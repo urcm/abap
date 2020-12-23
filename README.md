@@ -1,2 +1,2 @@
-# abap-oo-cl_salv_table
+# Basic abap code libraries for beginners.
 Basic cl_salv_table creation with sap abap.
