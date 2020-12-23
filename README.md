@@ -1,2 +1,5 @@
 # Basic abap code libraries for beginners.
-Basic cl_salv_table creation with sap abap.
+In this repository, you can get some of reusable ABAP codes to apply for your projects.
+
+
+
