@@ -11,7 +11,6 @@ class cl_salv_table_custom definition.
 
     methods get_data_displayed.
     methods initialize_alv.
-
 endclass.
 
 class cl_salv_table_custom implementation.
