@@ -11,6 +11,7 @@ class cl_salv_table_custom definition.
 
     methods get_data_displayed.
     methods initialize_alv.
+    methods set_column_width.
 endclass.
 
 class cl_salv_table_custom implementation.
@@ -21,6 +22,10 @@ class cl_salv_table_custom implementation.
 
   method get_data_displayed.
     select * from spfli into table data_displayed up to 100 rows.
+  endmethod.
+  
+  method set_column_width.
+    alv->get_columns( )->set_optimize( ).
   endmethod.
 
   method initialize_alv.
