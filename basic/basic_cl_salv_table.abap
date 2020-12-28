@@ -40,10 +40,31 @@ form initialize_alv .
       changing
         t_table      = flight 
         ).
+    
+    perform set_column_width.
+        
     catch cx_salv_msg into message.
       " get error handling
   endtry.
 endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  SET_COLUMN_WIDTH
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_column_width .
+  data col_opt type ref to cl_salv_columns_table.
+  
+  col_opt = alv->get_columns( ).
+  
+  col_opt->set_optimize( ).
+
+endform.
+
 *&---------------------------------------------------------------------*
 *&      Form  DISPLAY
 *&---------------------------------------------------------------------*
