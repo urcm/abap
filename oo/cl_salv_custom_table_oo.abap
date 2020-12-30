@@ -1,5 +1,3 @@
-REPORT cl_salv_table_oo.
-
 class cl_salv_table_custom definition.
   public section.
     methods constructor.
@@ -12,18 +10,20 @@ class cl_salv_table_custom definition.
     methods get_data_displayed.
     methods initialize_alv.
     methods set_column_width.
+    methods set_report_name.
 endclass.
 
 class cl_salv_table_custom implementation.
   method constructor.
     get_data_displayed( ).
     initialize_alv( ).
+    set_report_name( ).
   endmethod.
 
   method get_data_displayed.
     select * from spfli into table data_displayed up to 100 rows.
   endmethod.
-  
+
   method set_column_width.
     alv->get_columns( )->set_optimize( ).
   endmethod.
@@ -39,6 +39,10 @@ class cl_salv_table_custom implementation.
       catch cx_salv_msg into data(message).
         " get error handling
     endtry.
+  endmethod.
+
+  method set_report_name.
+     alv->get_display_settings( )->set_list_header( |Flight Schedules - { lines( data_displayed ) } records | ).
   endmethod.
 
   method display.
