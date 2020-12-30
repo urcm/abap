@@ -11,6 +11,7 @@ class cl_salv_table_custom definition.
     methods initialize_alv.
     methods set_column_width.
     methods set_report_name.
+    methods set_toolbar_functuality.
 endclass.
 
 class cl_salv_table_custom implementation.
@@ -18,6 +19,7 @@ class cl_salv_table_custom implementation.
     get_data_displayed( ).
     initialize_alv( ).
     set_report_name( ).
+    set_toolbar_functuality( ).
   endmethod.
 
   method get_data_displayed.
@@ -42,7 +44,11 @@ class cl_salv_table_custom implementation.
   endmethod.
 
   method set_report_name.
-     alv->get_display_settings( )->set_list_header( |Flight Schedules - { lines( data_displayed ) } records | ).
+    alv->get_display_settings( )->set_list_header( |Flight Schedule - { lines( data_displayed ) } records | ).
+  endmethod.
+
+  method set_toolbar_functuality.
+    alv->get_functions( )->set_all( ).
   endmethod.
 
   method display.
