@@ -13,6 +13,7 @@ class cl_salv_table_custom definition.
     methods set_report_name.
     methods set_toolbar_functuality.
     methods set_row_strip.
+    methods hide_column.
 endclass.
 
 class cl_salv_table_custom implementation.
@@ -22,6 +23,7 @@ class cl_salv_table_custom implementation.
     set_report_name( ).
     set_toolbar_functuality( ).
     set_row_strip( ).
+    hide_column( ).
   endmethod.
 
   method get_data_displayed.
@@ -55,6 +57,10 @@ class cl_salv_table_custom implementation.
   
   method set_row_strip.
     alv->get_display_settings( )->set_striped_pattern( if_salv_c_bool_sap=> true ). 
+  endmethod.
+  
+  method hide_column.
+    alv->get_columns( )->ge_column( 'MANDT' )->set_visible( if_salv_c_bool_sap=>false ).
   endmethod.
 
   method display.
