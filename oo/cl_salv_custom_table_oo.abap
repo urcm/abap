@@ -12,6 +12,7 @@ class cl_salv_table_custom definition.
     methods set_column_width.
     methods set_report_name.
     methods set_toolbar_functuality.
+    methods set_row_strip.
 endclass.
 
 class cl_salv_table_custom implementation.
@@ -20,6 +21,7 @@ class cl_salv_table_custom implementation.
     initialize_alv( ).
     set_report_name( ).
     set_toolbar_functuality( ).
+    set_row_strip( ).
   endmethod.
 
   method get_data_displayed.
@@ -49,6 +51,10 @@ class cl_salv_table_custom implementation.
 
   method set_toolbar_functuality.
     alv->get_functions( )->set_all( ).
+  endmethod.
+  
+  method set_row_strip.
+    alv->get_display_settings( )->set_striped_pattern( if_salv_c_bool_sap=> true ). 
   endmethod.
 
   method display.
