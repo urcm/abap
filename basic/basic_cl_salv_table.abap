@@ -1,6 +1,3 @@
-report zbasic_cl_salv_spfli.
-
-
 data flight type standard table of spfli.
 data alv type ref to cl_salv_table.
 
@@ -16,10 +13,8 @@ start-of-selection.
 *  -->  p1        text
 *  <--  p2        text
 *----------------------------------------------------------------------*
-form get_flight .
-
+form get_flight.
   select * from spfli into table flight where airpfrom = 'FRA'.
-
 endform.
 *&---------------------------------------------------------------------*
 *&      Form  INITIALIZE_ALV
@@ -30,7 +25,6 @@ endform.
 *  <--  p2        text
 *----------------------------------------------------------------------*
 form initialize_alv .
-
   data message type ref to cx_salv_msg.
 
   try.
@@ -38,11 +32,11 @@ form initialize_alv .
       importing
         r_salv_table = alv
       changing
-        t_table      = flight 
+        t_table      = flight
         ).
-    
-    perform set_column_width.
-        
+
+      perform alv_settings.
+
     catch cx_salv_msg into message.
       " get error handling
   endtry.
@@ -58,11 +52,24 @@ endform.
 *----------------------------------------------------------------------*
 form set_column_width .
   data col_opt type ref to cl_salv_columns_table.
-  
-  col_opt = alv->get_columns( ).
-  
-  col_opt->set_optimize( ).
 
+  col_opt = alv->get_columns( ).
+  col_opt->set_optimize( ).
+endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  ALV_SETTINGS
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form alv_settings .
+  perform set_column_width.
+  perform set_report_name.
+  perform set_toolbar_functionality.
+  perform set_row_strip.
 endform.
 
 *&---------------------------------------------------------------------*
@@ -75,4 +82,37 @@ endform.
 *----------------------------------------------------------------------*
 form display.
   alv->display( ).
+endform.
+*&---------------------------------------------------------------------*
+*&      Form  SET_REPORT_NAME
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_report_name.
+  alv->get_display_settings( )->set_list_header( |Flight Schedule - { lines( flight ) } records | ).
+endform.
+*&---------------------------------------------------------------------*
+*&      Form  SET_TOOLBAR_FUNCTIONALITY
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_toolbar_functionality .
+  alv->get_functions( )->set_all( ).
+endform.
+*&---------------------------------------------------------------------*
+*&      Form  SET_ROW_STRIP
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_row_strip .
+  alv->get_display_settings( )->set_striped_pattern( if_salv_c_bool_sap=>true ).
 endform.
