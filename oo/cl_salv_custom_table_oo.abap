@@ -14,6 +14,7 @@ class cl_salv_table_custom definition.
     methods set_toolbar_functuality.
     methods set_row_strip.
     methods hide_column.
+    methods change_column_name.
 endclass.
 
 class cl_salv_table_custom implementation.
@@ -24,6 +25,7 @@ class cl_salv_table_custom implementation.
     set_toolbar_functuality( ).
     set_row_strip( ).
     hide_column( ).
+    change_column_name( ).
   endmethod.
 
   method get_data_displayed.
@@ -54,13 +56,22 @@ class cl_salv_table_custom implementation.
   method set_toolbar_functuality.
     alv->get_functions( )->set_all( ).
   endmethod.
-  
+
   method set_row_strip.
-    alv->get_display_settings( )->set_striped_pattern( if_salv_c_bool_sap=> true ). 
+    alv->get_display_settings( )->set_striped_pattern( if_salv_c_bool_sap=>true ).
   endmethod.
-  
+
   method hide_column.
-    alv->get_columns( )->ge_column( 'MANDT' )->set_visible( if_salv_c_bool_sap=>false ).
+    alv->get_columns( )->get_column( 'MANDT' )->set_visible( if_salv_c_bool_sap=>false ).
+  endmethod.
+
+  method change_column_name.
+    data column type ref to cl_salv_column.
+    
+    column = alv->get_columns( )->get_column( 'CARRID' ).
+    column->set_short_text( 'CNum' ).
+    column->set_medium_text( 'Carrier Num').
+    column->set_long_text( 'Carrier Number' ).
   endmethod.
 
   method display.
