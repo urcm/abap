@@ -6,6 +6,7 @@ class cl_salv_table_custom definition.
   private section.
     data alv              type ref to cl_salv_table.
     data data_displayed   type standard table of spfli.
+    data column           type ref to cl_salv_column.
 
     methods get_data_displayed.
     methods initialize_alv.
@@ -66,8 +67,6 @@ class cl_salv_table_custom implementation.
   endmethod.
 
   method change_column_name.
-    data column type ref to cl_salv_column.
-    
     column = alv->get_columns( )->get_column( 'CARRID' ).
     column->set_short_text( 'CNum' ).
     column->set_medium_text( 'Carrier Num').
