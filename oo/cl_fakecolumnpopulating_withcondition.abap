@@ -9,9 +9,9 @@ class delayed_flight definition.
              status   type char10,
            end of flight.
 
-    data: t_flight  type standard table of flight,
-          wa_flight like t_flight,
-          alv       type ref to cl_salv_table.
+    data: t_flight    type standard table of flight,
+          wa_flight   like t_flight,
+          alv         type ref to cl_salv_table.
 
     data: columns     type ref to cl_salv_columns_table.
     data: column      type ref to cl_salv_column.
