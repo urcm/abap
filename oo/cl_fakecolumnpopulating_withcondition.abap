@@ -66,10 +66,8 @@ class delayed_flight implementation.
     data layout_key      type salv_s_layout_key.
 
     layout_settings = alv->get_layout( ).
-
     layout_key-report = sy-repid.
     layout_settings->set_key( layout_key ).
-
     layout_settings->set_save_restriction( if_salv_c_layout=>restrict_none ).
   endmethod.
 
