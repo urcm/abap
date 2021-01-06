@@ -1,8 +1,5 @@
-report z_flight_delayed.
-
 class delayed_flight definition.
   public section.
-
     types: begin of flight,
              carrid     type spfli-carrid,
              connid     type spfli-connid,
@@ -33,7 +30,6 @@ class delayed_flight definition.
     methods: set_status_column.
 
     methods: set_color_colms changing ct_flight type ty_t_flight.
-
 endclass.
 
 class delayed_flight implementation.
@@ -180,7 +176,6 @@ class delayed_flight implementation.
       exporting
         id     = list_name
         values = list.
-
   endmethod.
 
   method display.
