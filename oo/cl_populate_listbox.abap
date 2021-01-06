@@ -1,36 +1,39 @@
+report z_flight_delayed.
+
 class delayed_flight definition.
   public section.
+
     types: begin of flight,
-             carrid    type spfli-carrid,
-             connid    type spfli-connid,
-             cityfrom  type spfli-cityfrom,
-             cityto    type spfli-cityto,
-             airpfrom  type spfli-airpfrom,
-             status    type char10,
-             t_color   type lvc_t_scol,
+             carrid     type spfli-carrid,
+             connid     type spfli-connid,
+             cityfrom   type spfli-cityfrom,
+             cityto     type spfli-cityto,
+             airpfrom   type spfli-airpfrom,
+             status     type char10,
+             t_color    type lvc_t_scol,
            end of flight.
 
-    types: ty_t_flight type standard table of flight.
+    types: ty_t_flight  type standard table of flight.
 
-    data: t_flight     type standard table of flight,
-          wa_flight    like t_flight,
-          alv          type ref to cl_salv_table.
+    data: t_flight      type standard table of flight,
+          wa_flight     like t_flight,
+          alv           type ref to cl_salv_table.
 
-    data: columns      type ref to cl_salv_columns_table.
-    data: column       type ref to cl_salv_column.
+    data: columns       type ref to cl_salv_columns_table.
+    data: column        type ref to cl_salv_column.
 
-    methods: get_flight importing f_code type spfli-airpfrom.
+    methods: get_flight importing f_code type c.
+    methods: populate_listbox exporting value_list type spfli-airpfrom.
 
   private section.
-    methods: initialize_alv,
-      display,
-      set_column_width,
-      enable_layout_settings,
-      set_status_column.
+    methods: initialize_alv.
+    methods: display.
+    methods: set_column_width.
+    methods: enable_layout_settings.
+    methods: set_status_column.
 
-    methods: set_color_colms
-      changing
-        ct_flight type ty_t_flight.
+    methods: set_color_colms changing ct_flight type ty_t_flight.
+
 endclass.
 
 class delayed_flight implementation.
@@ -76,7 +79,7 @@ class delayed_flight implementation.
         set_status_column( ).
         set_color_colms( changing ct_flight = t_flight ).
       catch cx_salv_msg into data(message).
-        "get errror handling.
+        message 'Salv list does not started.' type 'I' display like 'E'.
     endtry.
   endmethod.
 
@@ -109,6 +112,7 @@ class delayed_flight implementation.
         lo_col_tab->set_color( ls_color ).
       catch cx_salv_not_found.
     endtry.
+
 
     data: lt_s_color type lvc_t_scol,
           ls_s_color type lvc_s_scol,
@@ -146,7 +150,37 @@ class delayed_flight implementation.
         column->set_output_length( 10 ).
       catch cx_salv_not_found into not_found.
         message 'Error ' type 'I' display like 'E'.
+
     endtry.
+  endmethod.
+
+  method populate_listbox.
+
+    data: list_name type vrm_id,
+          list      type vrm_values,
+          value_lis like line of list.
+
+    clear list. refresh list.
+    list_name = 'VALUE'.
+
+    select distinct airpfrom from spfli
+      into table @data(dt_spfli)
+      where airpfrom is not null.
+
+    sort dt_spfli ascending by airpfrom.
+
+    loop at dt_spfli assigning field-symbol(<fs_spfli>).
+      clear value_lis.
+      value_lis-key = <fs_spfli>-airpfrom.
+      value_lis-text = <fs_spfli>-airpfrom.
+      append value_lis to list.
+    endloop.
+
+    call function 'VRM_SET_VALUES'
+      exporting
+        id     = list_name
+        values = list.
+
   endmethod.
 
   method display.
@@ -154,16 +188,17 @@ class delayed_flight implementation.
   endmethod.
 endclass.
 
-field-symbols: <fs_spfli> type spfli.
 
 selection-screen begin of block p_fcode with frame title text-001.
-parameters: value like <fs_spfli>-airpfrom default 'FRA'.
+parameters: value type spfli-airpfrom as listbox visible length 20.
 selection-screen end of block p_fcode.
 
-start-of-selection.
+initialization.
+  data(list_box) = new delayed_flight( ).
 
+  call method list_box->populate_listbox importing value_list = value.
+
+start-of-selection.
   data(dsp_flight) = new delayed_flight( ).
 
-  call method dsp_flight->get_flight
-    exporting
-      f_code = value.
+  call method dsp_flight->get_flight exporting f_code = value.
