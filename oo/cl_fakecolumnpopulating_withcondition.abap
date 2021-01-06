@@ -95,6 +95,4 @@ endclass.
 start-of-selection.
   data(dsp_flight) = new delayed_flight( ).
 
-  call method dsp_flight->get_flight
-    exporting
-      f_code = 'FRA'.
+  call method dsp_flight->get_flight exporting f_code = 'FRA'.
