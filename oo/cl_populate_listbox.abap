@@ -1,6 +1,5 @@
 class delayed_flight definition.
   public section.
-
     types: begin of flight,
              carrid    type spfli-carrid,
              connid    type spfli-connid,
@@ -32,7 +31,6 @@ class delayed_flight definition.
     methods: set_color_colms
       changing
         ct_flight type ty_t_flight.
-
 endclass.
 
 class delayed_flight implementation.
@@ -111,7 +109,6 @@ class delayed_flight implementation.
         lo_col_tab->set_color( ls_color ).
       catch cx_salv_not_found.
     endtry.
-
 
     data: lt_s_color type lvc_t_scol,
           ls_s_color type lvc_s_scol,
