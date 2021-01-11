@@ -123,5 +123,5 @@ start-of-selection.
       write: / info_detail->add_text( calc_np->calc_normalprice( discounted_price = chck_type->check_num( gt_num = nm_prc ) discount_ratio = chck_type->check_num( gt_num = ds_rt ) ) ).
 
     when di_rate.
-      write: / 'P_R3 has been selected..!'.
+      write: / 'Discount Rate:'.
   endcase.
