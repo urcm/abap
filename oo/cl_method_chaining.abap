@@ -95,6 +95,13 @@ parameters: nm_prc type i,
             ds_rt  type i.
 selection-screen: end of block p_form.
 
+at selection-screen output.
+   %_dis_prc_%_app_%-text = 'Discount Price'.
+   %_nrm_prc_%_app_%-text = 'Normal Price'.
+   %_di_rate_%_app_%-text = 'Discount Rate'.
+   %_nm_prc_%_app_%-text = 'Normal Price'.
+   %_ds_rt_%_app_%-text = 'Discounted Price'.
+
 initialization.
   rad_gr = 'Select your option.'.
   frm_gr = 'Forms'.
