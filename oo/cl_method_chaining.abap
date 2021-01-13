@@ -83,7 +83,6 @@ class lcl_detail implementation.
   endmethod.
 endclass.
 
-
 selection-screen: begin of block blck1 with frame title rad_gr.
 parameters: dis_prc radiobutton group rg1,
             nrm_prc radiobutton group rg1,
@@ -120,7 +119,6 @@ start-of-selection.
     when nrm_prc.
       write: / 'Normal Price: '.
       write: / info_detail->add_text( calc_np->calc_normalprice( discounted_price = chck_type->check_num( gt_num = nm_prc ) discount_ratio = chck_type->check_num( gt_num = ds_rt ) ) ).
-
     when di_rate.
       write: / 'Discount Rate: '.
       write: / info_detail->add_text( calc_disrate->calc_discountrate( normal_price = chck_type->check_num( gt_num = nm_prc ) discounted_price = chck_type->check_num( gt_num = ds_rt ) ) ).
