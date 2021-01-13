@@ -94,6 +94,12 @@ parameters: nm_prc type i,
             ds_rt  type i.
 selection-screen: end of block p_form.
 
+%_dis_prc_%_app_%-text = 'Discount Price'.
+%_nrm_prc_%_app_%-text = 'Normal Price'.
+%_di_rate_%_app_%-text = 'Discount Rate'.
+%_nm_prc_%_app_%-text = 'Normal Price'.
+%_ds_rt_%_app_%-text = 'Discounted Price'.
+
 data: so_ucomm type sy_ucomm.
 if sy-ucomm eq 'UPD'.
   " Get the action from selection.
