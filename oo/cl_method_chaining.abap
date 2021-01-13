@@ -94,12 +94,26 @@ parameters: nm_prc type i,
             ds_rt  type i.
 selection-screen: end of block p_form.
 
+data: so_ucomm type sy_ucomm.
+if sy-ucomm eq 'UPD'.
+  " Get the action from selection.
+endif.
+
 at selection-screen output.
-   %_dis_prc_%_app_%-text = 'Discount Price'.
-   %_nrm_prc_%_app_%-text = 'Normal Price'.
-   %_di_rate_%_app_%-text = 'Discount Rate'.
-   %_nm_prc_%_app_%-text = 'Normal Price'.
-   %_ds_rt_%_app_%-text = 'Discounted Price'.
+  case so_ucomm.
+    when 'UPD'.
+      if nrm_prc eq 'X'.
+        %_nm_prc_%_app_%-text = 'Discounted Price'.
+        %_ds_rt_%_app_%-text = 'Discount Rate'.
+      elseif di_rate eq 'X'.
+        %_nm_prc_%_app_%-text = 'Normal Price'.
+        %_ds_rt_%_app_%-text = 'Discounted Price'.
+      else.
+        %_nm_prc_%_app_%-text = 'Normal Price'.
+        %_ds_rt_%_app_%-text = 'Discount Rate'.
+      endif.
+      modify screen.
+  endcase.    
 
 initialization.
   rad_gr = 'Select your option.'.
