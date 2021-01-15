@@ -1,10 +1,10 @@
+data: gd_ucomm type sy-ucomm.
 
 selection-screen: begin of block e_form with frame title ev_form.
 parameters: p_carrid type spfli-carrid
                             as listbox visible length 10
                             user-command upd,
             p_uname  type uname.
-
 selection-screen: end of block e_form.
 
 at selection-screen.
