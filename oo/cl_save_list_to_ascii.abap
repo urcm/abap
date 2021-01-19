@@ -41,4 +41,32 @@ class export_text implementation.
     convert_asci( ).
     down_txt( ).
   endmethod.
-  endclass.
+  method convert_asci.
+    call function 'LIST_TO_ASCI'
+      exporting
+        list_index = 0
+      tables
+        listasci   = it_report.
+  endmethod.
+
+  method down_txt.
+    call function 'WS_DOWNLOAD'
+      exporting
+        filename = 'C:\temp\report.txt'
+        filetype = 'ASC'
+      tables
+        data_tab = it_report.
+
+  endmethod.
+
+  method display.
+    loop at its_sflight assigning field-symbol(<fs_sflight>).
+      write:/ sy-vline,
+              <fs_sflight>-carrid, sy-vline,
+              <fs_sflight>-fldate, sy-vline,
+              <fs_sflight>-price, sy-vline,
+              <fs_sflight>-planetype, sy-vline.
+    endloop.
+  endmethod.
+
+endclass.
