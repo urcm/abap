@@ -1,6 +1,4 @@
 
-tables: sflight.
-
 class export_text definition.
   public section.
     types: begin of t_sflight,
@@ -26,7 +24,6 @@ class export_text definition.
       down_txt.
 endclass.
 
-
 class export_text implementation.
   method get_data.
 
@@ -36,11 +33,11 @@ class export_text implementation.
 
     move-corresponding it_sflight to its_sflight keeping target lines.
 
-
     display( ).
     convert_asci( ).
     down_txt( ).
   endmethod.
+  
   method convert_asci.
     call function 'LIST_TO_ASCI'
       exporting
@@ -68,5 +65,4 @@ class export_text implementation.
               <fs_sflight>-planetype, sy-vline.
     endloop.
   endmethod.
-
 endclass.
