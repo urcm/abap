@@ -6,9 +6,11 @@ class export_text definition.
              fldate    type sflight-fldate,
              price     type sflight-price,
              planetype type sflight-planetype,
+             carrname  type scarr-carrname,
            end of t_sflight.
 
     data: its_sflight type standard table of t_sflight.
+    data: it_sflight type standard table of t_sflight.
 
  methods: get_data.
  
@@ -27,9 +29,12 @@ endclass.
 class export_text implementation.
   method get_data.
 
-    select * from sflight
-      into table @data(it_sflight)
-                      up to 100 rows.
+    select a~carrid a~fldate a~price a~planetype b~carrname
+          from sflight as a
+          inner join scarr as b
+          on a~carrid = b~carrid
+                 into table it_sflight
+         up to 100 rows.
 
     move-corresponding it_sflight to its_sflight keeping target lines.
 
@@ -62,7 +67,8 @@ class export_text implementation.
               <fs_sflight>-carrid, sy-vline,
               <fs_sflight>-fldate, sy-vline,
               <fs_sflight>-price, sy-vline,
-              <fs_sflight>-planetype, sy-vline.
+              <fs_sflight>-planetype, sy-vline,
+              <fs_sflight>-carrname, sy-vline.
     endloop.
   endmethod.
 endclass.
