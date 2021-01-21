@@ -72,3 +72,7 @@ class export_text implementation.
     endloop.
   endmethod.
 endclass.
+
+start-of-selection.
+  data(sw_sflight) = new export_text( ).
+  sw_sflight->get_data( ).
