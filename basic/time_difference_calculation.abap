@@ -16,3 +16,24 @@ dist_mo   = cl_reca_date=>months_between_two_dates(
                                                    ).
 
 write :/ dist_mo.
+
+
+
+
+data : lv_sec type sytabix.
+data : calc_sec     type i.
+data : calc_min(10) type c.
+data : calc_hrs(12) type c.
+
+call function 'SWI_DURATION_DETERMINE'
+  exporting
+    start_date = '20210101'
+    end_date   = '20210102'
+    start_time = sy-uzeit
+    end_time   = sy-uzeit
+  importing
+    duration   = lv_sec.
+
+calc_sec = lv_sec.
+calc_min = calc_sec / 60 .
+calc_hrs = calc_sec / 3600 .
