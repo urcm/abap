@@ -37,3 +37,7 @@ call function 'SWI_DURATION_DETERMINE'
 calc_sec = lv_sec.
 calc_min = calc_sec / 60 .
 calc_hrs = calc_sec / 3600 .
+
+write :/ | { calc_hrs } hours |.
+write :/ | { calc_min } minutes |.
+write :/ | { calc_sec } seconds |.
