@@ -14,11 +14,6 @@ endclass.
 
 class cl_time implementation.
   method diff_time.
-
-    write :/ st_date.
-    write :/ en_date.
-
-
     call function 'SWI_DURATION_DETERMINE'
       exporting
         start_date = st_date
@@ -33,15 +28,21 @@ class cl_time implementation.
     calc_hrs = calc_sec / 3600 .
 
     res_diff( ).
-
   endmethod.
 
   method res_diff.
-
     write :/ | { calc_hrs } hours |.
     write :/ | { calc_min } minutes |.
     write :/ | { calc_sec } seconds |.
-
   endmethod.
-
 endclass.
+
+
+selection-screen: begin of block p_form with frame title frm_gr.
+parameters: srt_dte type sy-datum,
+            end_dte type sy-datum.
+selection-screen: end of block p_form.
+
+start-of-selection.
+  data(get_diff) = new cl_time( ).
+  get_diff->diff_time( st_date = srt_dte en_date = end_dte ).
