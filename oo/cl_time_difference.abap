@@ -65,12 +65,29 @@ class cl_time implementation.
   endmethod.
 endclass.
 
-
 selection-screen: begin of block p_form with frame title frm_gr.
 parameters: srt_dte type sy-datum,
             end_dte type sy-datum.
 selection-screen: end of block p_form.
 
+selection-screen: begin of block r_form with frame title frm_rd.
+parameters: hms_res radiobutton group rg1,
+            ymd_res radiobutton group rg1.
+selection-screen: end of block r_form.
+
+initialization.
+  frm_gr = 'Selecet your date'.
+  frm_rd = 'Select your result type'.
+  %_srt_dte_%_app_%-text = 'Start Date'.
+  %_end_dte_%_app_%-text = 'End Date'.
+  %_hms_res_%_app_%-text = 'Hour/Minute/Second'.
+  %_ymd_res_%_app_%-text = 'Year/Month/Day'.
+
 start-of-selection.
   data(get_diff) = new cl_time( ).
-  get_diff->diff_time( st_date = srt_dte en_date = end_dte ).
+  case 'X'.
+    when hms_res.
+      get_diff->diff_time( st_date = srt_dte en_date = end_dte ).
+    when ymd_res.
+      get_diff->diff_date( st_date = srt_dte en_date = end_dte ).
+  endcase.
