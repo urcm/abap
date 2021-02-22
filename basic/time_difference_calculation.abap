@@ -1,43 +1,25 @@
-data dist_days type i.
-data dist_mo type i.
+selection-screen: begin of block p_form with frame title frm_gr.
+parameters: srt_dte type sy-datum,
+            end_dte type sy-datum.
+selection-screen: end of block p_form.
 
-dist_days = cl_reca_date=>get_days_between_two_dates( 
-                                                    exporting
-                                                              id_datefrom = '20210201'
-                                                              id_dateto = sy-datum 
-                                                              ).
-write :/ dist_days.
+selection-screen: begin of block r_form with frame title frm_rd.
+parameters: hms_res radiobutton group rg1,
+            ymd_res radiobutton group rg1.
+selection-screen: end of block r_form.
 
+initialization.
+  frm_gr = 'Select your date'.
+  frm_rd = 'Select your result type'.
+  %_srt_dte_%_app_%-text = 'Start Date'.
+  %_end_dte_%_app_%-text = 'End Date'.
+  %_hms_res_%_app_%-text = 'Hrs/Min/Sec/'.
+  %_ymd_res_%_app_%-text = 'Yr/Mo/Day'.
 
-dist_mo   = cl_reca_date=>months_between_two_dates(
-                                                 exporting
-                                                   id_date_from = '20200201'
-                                                   id_date_to = sy-datum
-                                                   ).
-
-write :/ dist_mo.
-
-
-
-
-data : lv_sec type sytabix.
-data : calc_sec     type i.
-data : calc_min(10) type c.
-data : calc_hrs(12) type c.
-
-call function 'SWI_DURATION_DETERMINE'
-  exporting
-    start_date = '20210101'
-    end_date   = '20210102'
-    start_time = sy-uzeit
-    end_time   = sy-uzeit
-  importing
-    duration   = lv_sec.
-
-calc_sec = lv_sec.
-calc_min = calc_sec / 60 .
-calc_hrs = calc_sec / 3600 .
-
-write :/ | { calc_hrs } hours |.
-write :/ | { calc_min } minutes |.
-write :/ | { calc_sec } seconds |.
+start-of-selection.
+  case 'X'.
+    when hms_res.
+      perform diff_time using srt_dte end_dte.
+    when ymd_res.
+      perform diff_date using srt_dte end_dte.
+  endcase.
