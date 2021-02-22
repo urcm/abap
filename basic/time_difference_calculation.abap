@@ -23,3 +23,27 @@ start-of-selection.
     when ymd_res.
       perform diff_date using srt_dte end_dte.
   endcase.
+  
+  form diff_time using srt_dte end_dte.
+  data: calc_sec type i.
+  data: calc_min(10) type c.
+  data: calc_hrs(12) type c.
+  data: lv_sec type sytabix.
+
+  call function 'SWI_DURATION_DETERMINE'
+    exporting
+      start_date = srt_dte
+      end_date   = end_dte
+      start_time = sy-uzeit
+      end_time   = sy-uzeit
+    importing
+      duration   = lv_sec.
+
+  calc_sec = lv_sec.
+  calc_min = calc_sec / 60 .
+  calc_hrs = calc_sec / 3600 .
+
+  write :/ | { calc_hrs } hours |.
+  write :/ | { calc_min } minutes |.
+  write :/ | { calc_sec } seconds |.
+endform.
