@@ -43,6 +43,32 @@ form diff_date using srt_dte end_dte.
     write :/ | { calc_days } days |.
 endform.
 
+form diff_day using srt_dte end_dte.
+  data: df_day type i.
+
+  df_day = cl_reca_date=>get_days_between_two_dates(
+                                                 exporting
+                                                   id_datefrom = end_dte
+                                                   id_dateto = srt_dte
+                                                   ).
+
+  write :/ df_day. 
+  write :/ 'df_day'.
+endform.
+
+form diff_mo using srt_dte end_dte.
+  data: df_mo type i.
+
+  df_mo = cl_reca_date=>months_between_two_dates(
+                                                  exporting
+                                                    id_date_from = end_dte
+                                                    id_date_to = srt_dte
+                                                  ).
+  write :/ df_mo.
+   write :/ 'df_mo'.
+endform.
+
+
 selection-screen: begin of block p_form with frame title frm_gr.
 parameters: srt_dte type sy-datum,
             end_dte type sy-datum.
