@@ -89,7 +89,50 @@ parameters: dm_dy radiobutton group rg3,
             dm_mo radiobutton group rg3.
 selection-screen: end of block dm_form.
 
+data: so_ucomm type sy-ucomm.
+
+at selection-screen.
+  so_ucomm = sy-ucomm.
+  if sy-ucomm eq 'UPD'.
+    " Do something.
+  endif.
+
+at selection-screen output.
+  case so_ucomm.
+    when 'UPD'.
+      if sel_mo eq 'X'.
+        loop at screen.
+          if screen-name cs 'hms_res'.
+            screen-input = 0.
+            modify screen.
+          elseif screen-name cs 'ymd_res'.
+            screen-input = 0.
+            modify screen.
+          endif.
+          modify screen.
+        endloop.
+      else.
+        loop at screen.
+          if screen-name cs 'dm_dy'.
+            screen-input = 0.
+            modify screen.
+          elseif screen-name cs 'dm_mo'.
+            screen-input = 0.
+            modify screen.
+          endif.
+        endloop.
+      endif.
+  endcase.
+
 initialization.
+  loop at screen.
+    if screen-name cs 'dm_dy' or screen-name cs 'dm_mo'.
+      screen-active = 1.
+      screen-input = 0.
+      modify screen.
+    endif.
+  endloop.
+
   frm_gr = 'Select your date'.
   frm_rd = 'Select your result type'.
   frm_dm = 'Select result day/month'.
@@ -101,7 +144,6 @@ initialization.
   %_sel_mo_%_app_%-text = 'Just Date/Month'.
   %_dm_dy_%_app_%-text = 'Day Difference'.
   %_dm_mo_%_app_%-text = 'Month Difference'.
-
 start-of-selection.
   case 'X'.
     when hms_res.
