@@ -74,18 +74,33 @@ parameters: srt_dte type sy-datum,
             end_dte type sy-datum.
 selection-screen: end of block p_form.
 
+selection-screen: begin of block sel_form with frame title frm_sl.
+parameters: sel_dt radiobutton group rg1 user-command upd,
+            sel_mo radiobutton group rg1.
+selection-screen: end of block sel_form.
+
 selection-screen: begin of block r_form with frame title frm_rd.
-parameters: hms_res radiobutton group rg1,
-            ymd_res radiobutton group rg1.
+parameters: hms_res radiobutton group rg2,
+            ymd_res radiobutton group rg2.
 selection-screen: end of block r_form.
+
+selection-screen: begin of block dm_form with frame title frm_dm.
+parameters: dm_dy radiobutton group rg3,
+            dm_mo radiobutton group rg3.
+selection-screen: end of block dm_form.
 
 initialization.
   frm_gr = 'Select your date'.
   frm_rd = 'Select your result type'.
+  frm_dm = 'Select result day/month'.
   %_srt_dte_%_app_%-text = 'Start Date'.
   %_end_dte_%_app_%-text = 'End Date'.
   %_hms_res_%_app_%-text = 'Hrs/Min/Sec/'.
   %_ymd_res_%_app_%-text = 'Yr/Mo/Day'.
+  %_sel_dt_%_app_%-text = 'Full Difference'.
+  %_sel_mo_%_app_%-text = 'Just Date/Month'.
+  %_dm_dy_%_app_%-text = 'Day Difference'.
+  %_dm_mo_%_app_%-text = 'Month Difference'.
 
 start-of-selection.
   case 'X'.
