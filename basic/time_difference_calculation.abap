@@ -144,10 +144,45 @@ initialization.
   %_sel_mo_%_app_%-text = 'Just Date/Month'.
   %_dm_dy_%_app_%-text = 'Day Difference'.
   %_dm_mo_%_app_%-text = 'Month Difference'.
+
+
 start-of-selection.
-  case 'X'.
-    when hms_res.
+  if sel_dt eq 'X'.
+    if hms_res eq 'X'.
       perform diff_time using srt_dte end_dte.
-    when ymd_res.
+    elseif ymd_res eq 'X'.
       perform diff_date using srt_dte end_dte.
-  endcase.
+    endif.
+  else.
+    if dm_dy eq 'X'.
+      perform diff_day using srt_dte end_dte.
+    else. "dm_mo.
+      perform diff_mo using srt_dte end_dte.
+    endif.
+  endif.
+
+
+
+form diff_time using srt_dte end_dte.
+  data: calc_sec type i.
+  data: calc_min(10) type c.
+  data: calc_hrs(12) type c.
+  data: lv_sec type sytabix.
+
+  call function 'SWI_DURATION_DETERMINE'
+    exporting
+      start_date = srt_dte
+      end_date   = end_dte
+      start_time = sy-uzeit
+      end_time   = sy-uzeit
+    importing
+      duration   = lv_sec.
+
+  calc_sec = lv_sec.
+  calc_min = calc_sec / 60 .
+  calc_hrs = calc_sec / 3600 .
+
+  write :/ | { calc_hrs } hours |.
+  write :/ | { calc_min } minutes |.
+  write :/ | { calc_sec } seconds |.
+endform.
