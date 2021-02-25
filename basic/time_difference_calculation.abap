@@ -186,3 +186,48 @@ form diff_time using srt_dte end_dte.
   write :/ | { calc_min } minutes |.
   write :/ | { calc_sec } seconds |.
 endform.
+
+
+form diff_date using srt_dte end_dte.
+  data: calc_years type i.
+  data: calc_months type i.
+  data: calc_days type i.
+
+  cl_reca_date=>get_date_diff( exporting
+                                 id_date_from     = srt_dte
+                                 id_date_to       = end_dte
+                               importing
+                                 ed_years         = calc_years
+                                 ed_months        = calc_months
+                                 ed_calendar_days = calc_days
+                             ).
+
+
+  write :/ | { calc_years } years |.
+  write :/ | { calc_months } months |.
+  write :/ | { calc_days } days |.
+endform.
+
+
+form diff_day using srt_dte end_dte.
+  data: df_day type i.
+
+  df_day = cl_reca_date=>get_days_between_two_dates(
+                                                 exporting
+                                                   id_datefrom = srt_dte
+                                                   id_dateto = end_dte
+                                                   ).
+
+ write :/  | { df_day } days |.
+endform.
+
+form diff_mo using srt_dte end_dte.
+  data: df_mo type i.
+
+  df_mo = cl_reca_date=>months_between_two_dates(
+                                                  exporting
+                                                    id_date_from = srt_dte
+                                                    id_date_to = end_dte
+                                                  ).
+  write :/  | { df_mo } months |.
+endform.
