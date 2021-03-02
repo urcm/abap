@@ -5,5 +5,6 @@
 - 😚 cl_method_chaining.abap --> Small code blocks fror method chaining feature.
 - 😆 cl_save_list_to_ascii.abap --> Save your table as text.
 - 😜 cl_save_list_to_ascii.abap --> Save your alv list as excel file.
+- 😗 cl_time_difference.abap --> Get time difference between two dates.
 
 
