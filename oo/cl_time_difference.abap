@@ -70,10 +70,28 @@ parameters: srt_dte type sy-datum,
             end_dte type sy-datum.
 selection-screen: end of block p_form.
 
+selection-screen: begin of block sel_form with frame title frm_sl.
+parameters: sel_dt radiobutton group rg1 user-command upd,
+            sel_mo radiobutton group rg1.
+selection-screen: end of block sel_form.
+
 selection-screen: begin of block r_form with frame title frm_rd.
-parameters: hms_res radiobutton group rg1,
-            ymd_res radiobutton group rg1.
+parameters: hms_res radiobutton group rg2,
+            ymd_res radiobutton group rg2.
 selection-screen: end of block r_form.
+
+selection-screen: begin of block dm_form with frame title frm_dm.
+parameters: dm_dy radiobutton group rg3,
+            dm_mo radiobutton group rg3.
+selection-screen: end of block dm_form.
+
+data: so_ucomm type sy-ucomm.
+
+at selection-screen.
+  so_ucomm = sy-ucomm.
+  if sy-ucomm eq 'UPD'.
+    " 
+  endif.
 
 initialization.
   frm_gr = 'Selecet your date'.
