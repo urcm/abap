@@ -93,13 +93,53 @@ at selection-screen.
     " 
   endif.
 
+at selection-screen output.
+  case so_ucomm.
+    when 'UPD'.
+      if sel_mo eq 'X'.
+        loop at screen.
+          if screen-name cs 'hms_res'.
+            screen-input = 0.
+            modify screen.
+          elseif screen-name cs 'ymd_res'.
+            screen-input = 0.
+            modify screen.
+          endif.
+          modify screen.
+        endloop.
+      else.
+        loop at screen.
+          if screen-name cs 'dm_dy'.
+            screen-input = 0.
+            modify screen.
+          elseif screen-name cs 'dm_mo'.
+            screen-input = 0.
+            modify screen.
+          endif.
+        endloop.
+      endif.
+  endcase.
+
 initialization.
-  frm_gr = 'Selecet your date'.
+  loop at screen.
+    if screen-name cs 'dm_dy' or screen-name cs 'dm_mo'.
+      screen-active = 1.
+      screen-input = 0.
+      modify screen.
+    endif.
+  endloop.
+
+  frm_gr = 'Select your date'.
   frm_rd = 'Select your result type'.
+  frm_dm = 'Select result day/month'.
   %_srt_dte_%_app_%-text = 'Start Date'.
   %_end_dte_%_app_%-text = 'End Date'.
-  %_hms_res_%_app_%-text = 'Hour/Minute/Second'.
-  %_ymd_res_%_app_%-text = 'Year/Month/Day'.
+  %_hms_res_%_app_%-text = 'Hrs/Min/Sec/'.
+  %_ymd_res_%_app_%-text = 'Yr/Mo/Day'.
+  %_sel_dt_%_app_%-text = 'Full Difference'.
+  %_sel_mo_%_app_%-text = 'Just Date/Month'.
+  %_dm_dy_%_app_%-text = 'Day Difference'.
+  %_dm_mo_%_app_%-text = 'Month Difference'.
 
 start-of-selection.
   data(get_diff) = new cl_time( ).
