@@ -143,9 +143,16 @@ initialization.
 
 start-of-selection.
   data(get_diff) = new cl_time( ).
-  case 'X'.
-    when hms_res.
+  if sel_dt eq 'X'.
+    if hms_res eq 'X'.
       get_diff->diff_time( st_date = srt_dte en_date = end_dte ).
-    when ymd_res.
+    elseif ymd_res eq 'X'.
       get_diff->diff_date( st_date = srt_dte en_date = end_dte ).
-  endcase.
+    endif.
+  else.
+    if dm_dy eq 'X'.
+      get_diff->diff_day( st_date = srt_dte en_date = end_dte ).
+    else.
+      get_diff->diff_mo( st_date = srt_dte en_date = end_dte ).
+    endif.
+  endif.
