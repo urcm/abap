@@ -7,12 +7,19 @@ class cl_time definition.
     data: calc_min(10) type c.
     data: calc_hrs(12) type c.
 
-    methods: diff_time importing
+methods: diff_time importing
                          st_date type sy-datum
                          en_date type sy-datum.
     methods: diff_date importing
                          st_date type sy-datum
                          en_date type sy-datum.
+    methods: diff_day importing
+                        st_date type sy-datum
+                        en_date type sy-datum.
+
+    methods: diff_mo importing
+                       st_date type sy-datum
+                       en_date type sy-datum.
 
     methods: res_diff.
 
