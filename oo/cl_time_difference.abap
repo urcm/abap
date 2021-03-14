@@ -7,7 +7,7 @@ class cl_time definition.
     data: calc_min(10) type c.
     data: calc_hrs(12) type c.
 
-methods: diff_time importing
+    methods: diff_time importing
                          st_date type sy-datum
                          en_date type sy-datum.
     methods: diff_date importing
@@ -21,10 +21,10 @@ methods: diff_time importing
                        st_date type sy-datum
                        en_date type sy-datum.
 
+
     methods: res_diff.
 
 endclass.
-
 class cl_time implementation.
   method diff_time.
     call function 'SWI_DURATION_DETERMINE'
@@ -69,6 +69,16 @@ class cl_time implementation.
     write :/ | { calc_months } months |.
     write :/ | { calc_days } days |.
 
+  endmethod.
+   method diff_day.
+    data: df_day type i.
+
+    df_day = cl_reca_date=>get_days_between_two_dates(
+                                                  exporting
+                                                    id_datefrom = st_date
+                                                    id_dateto = en_date
+                                                    ).
+    write :/ | { df_day } days |.
   endmethod.
 endclass.
 
