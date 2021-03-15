@@ -25,6 +25,7 @@ class cl_time definition.
     methods: res_diff.
 
 endclass.
+
 class cl_time implementation.
   method diff_time.
     call function 'SWI_DURATION_DETERMINE'
@@ -64,13 +65,13 @@ class cl_time implementation.
                                    ed_calendar_days = calc_days
                                ).
 
-    
+
     write :/ | { calc_years } years |.
     write :/ | { calc_months } months |.
     write :/ | { calc_days } days |.
-
   endmethod.
-   method diff_day.
+
+  method diff_day.
     data: df_day type i.
 
     df_day = cl_reca_date=>get_days_between_two_dates(
@@ -79,6 +80,16 @@ class cl_time implementation.
                                                     id_dateto = en_date
                                                     ).
     write :/ | { df_day } days |.
+  endmethod.
+
+  method diff_mo.
+    data: df_mo type i.
+    df_mo = cl_reca_date=>months_between_two_dates(
+                                                  exporting
+                                                    id_date_from = st_date
+                                                    id_date_to = en_date
+                                                    ).
+    write:/ | { df_mo } months |.
   endmethod.
 endclass.
 
@@ -102,12 +113,13 @@ parameters: dm_dy radiobutton group rg3,
             dm_mo radiobutton group rg3.
 selection-screen: end of block dm_form.
 
+
 data: so_ucomm type sy-ucomm.
 
 at selection-screen.
   so_ucomm = sy-ucomm.
   if sy-ucomm eq 'UPD'.
-    " 
+    "
   endif.
 
 at selection-screen output.
