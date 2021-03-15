@@ -20,10 +20,7 @@ class cl_time definition.
     methods: diff_mo importing
                        st_date type sy-datum
                        en_date type sy-datum.
-
-
     methods: res_diff.
-
 endclass.
 
 class cl_time implementation.
@@ -64,7 +61,6 @@ class cl_time implementation.
                                    ed_months        = calc_months
                                    ed_calendar_days = calc_days
                                ).
-
 
     write :/ | { calc_years } years |.
     write :/ | { calc_months } months |.
