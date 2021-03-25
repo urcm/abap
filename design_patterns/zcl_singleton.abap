@@ -18,7 +18,6 @@ class zcl_singleton definition create private.
         rs_attr type char30.
 endclass.
 
-
 class zcl_singleton implementation.
   method get_instance.
     if sng_instance is initial.
@@ -36,6 +35,5 @@ class zcl_singleton implementation.
       where airpfrom = @db_attr.
 
     cl_demo_output=>display( data_displayed ).
-
   endmethod.
 endclass.
