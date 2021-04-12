@@ -22,3 +22,11 @@ class cls_abstract implementation.
   endmethod.
 endclass.
 
+class lcl_alv definition inheriting from cls_abstract final.
+  public section.
+    methods : show_data redefinition.
+  protected section.
+  private section.
+    data : lo_alv type ref to cl_salv_table,
+           lv_msg type ref to cx_salv_msg.
+endclass.
