@@ -44,3 +44,11 @@ class lcl_alv implementation.
     lo_alv->display( ).
   endmethod.
 endclass.
+
+class alv_view definition.
+  public section.
+    methods: imp_table importing tbl_genererated type any.
+  private section.
+    data : tb_alv type ref to cl_salv_table,
+           el_msg type ref to cx_salv_msg.
+endclass.
