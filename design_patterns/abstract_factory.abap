@@ -30,3 +30,17 @@ class lcl_alv definition inheriting from cls_abstract final.
     data : lo_alv type ref to cl_salv_table,
            lv_msg type ref to cx_salv_msg.
 endclass.
+
+class lcl_alv implementation.
+  method show_data.
+    try.
+        call method cl_salv_table=>factory
+          importing
+            r_salv_table = lo_alv
+          changing
+            t_table      = data_displayed.
+      catch cx_salv_msg into lv_msg.
+    endtry.
+    lo_alv->display( ).
+  endmethod.
+endclass.
