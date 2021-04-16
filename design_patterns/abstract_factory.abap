@@ -52,3 +52,20 @@ class alv_view definition.
     data : tb_alv type ref to cl_salv_table,
            el_msg type ref to cx_salv_msg.
 endclass.
+
+class alv_view implementation.
+  method imp_table.
+    data: dat_displayed  type standard table of spfli.
+
+    dat_displayed = tbl_genererated.
+    try.
+        call method cl_salv_table=>factory
+          importing
+            r_salv_table = tb_alv
+          changing
+            t_table      = dat_displayed.
+      catch cx_salv_msg into el_msg.
+    endtry.
+    tb_alv->display( ).
+  endmethod.
+endclass.
