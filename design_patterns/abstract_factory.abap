@@ -69,3 +69,8 @@ class alv_view implementation.
     tb_alv->display( ).
   endmethod.
 endclass.
+
+class flt_alv definition inheriting from cls_abstract final.
+  public section.
+    methods: show_data redefinition.
+endclass.
