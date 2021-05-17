@@ -81,8 +81,6 @@ class flt_alv implementation.
       ls_flight-countryfr = 'USA'.
       modify data_displayed  from ls_flight transporting countryfr.
     endloop.
-
     new alv_view( )->imp_table( tbl_genererated = data_displayed ).
-
   endmethod.
 endclass.
