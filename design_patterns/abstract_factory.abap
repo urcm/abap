@@ -73,3 +73,16 @@ class flt_alv definition inheriting from cls_abstract final.
   public section.
     methods: show_data redefinition.
 endclass.
+
+class flt_alv implementation.
+  method show_data.
+
+    loop at data_displayed into data(ls_flight).
+      ls_flight-countryfr = 'USA'.
+      modify data_displayed  from ls_flight transporting countryfr.
+    endloop.
+
+    new alv_view( )->imp_table( tbl_genererated = data_displayed ).
+
+  endmethod.
+endclass.
