@@ -84,3 +84,9 @@ class flt_alv implementation.
     new alv_view( )->imp_table( tbl_genererated = data_displayed ).
   endmethod.
 endclass.
+
+start-of-selection.
+  data: tbl type spfli.
+  data(lo_grid) = new lcl_alv( db_attr = 'FRA' ).
+  lo_grid->get_data( ).
+  lo_grid->show_data( ).
