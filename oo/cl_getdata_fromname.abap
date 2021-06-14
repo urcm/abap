@@ -2,7 +2,6 @@
 class obj_search definition.
   public section.
     methods: init.
-
     types: begin of flight,
              carrid   type spfli-carrid,
              connid   type spfli-connid,
@@ -17,8 +16,6 @@ class obj_search definition.
       get_name
         returning value(rv_name) type string.
 
-
   private section.
     methods: get_data.
-
 endclass.
