@@ -11,3 +11,7 @@ data: gt_scarr        type table of gty_scarr,
       gt_fieldcatalog type slis_t_fieldcat_alv,
       gs_fieldcatalog type slis_fieldcat_alv,
       gs_layout       type slis_layout_alv.
+      
+select * from scarr
+  into corresponding fields of table gt_scarr.
+
