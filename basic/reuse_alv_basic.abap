@@ -14,8 +14,7 @@ data: gt_scarr        type table of gty_scarr,
       
 select * from scarr
   into corresponding fields of table gt_scarr.
-  
-  
+    
 gs_fieldcatalog-fieldname = 'CARRID'.
 gs_fieldcatalog-seltext_s = 'Airline Code'.
 gs_fieldcatalog-seltext_m = 'Airline Code'.
@@ -37,6 +36,18 @@ gs_fieldcatalog-seltext_m = 'Local currency'.
 gs_fieldcatalog-seltext_l = 'Local currency of airline'.
 append gs_fieldcatalog to gt_fieldcatalog.
 clear: gs_fieldcatalog.
+
+gs_fieldcatalog-fieldname = 'URL'.
+gs_fieldcatalog-seltext_s = 'Airline URL'.
+gs_fieldcatalog-seltext_m = 'AAirline URL'.
+gs_fieldcatalog-seltext_l = 'Airline URL'.
+append gs_fieldcatalog to gt_fieldcatalog.
+clear: gs_fieldcatalog.
+
+
+gs_layout-window_titlebar = 'SCARR Reuse ALV Test'.
+gs_layout-colwidth_optimize = abap_true.
+gs_layout-zebra             = abap_true.
 
 
 call function 'REUSE_ALV_GRID_DISPLAY'
