@@ -13,7 +13,10 @@ data: gt_scarr        type table of gty_scarr,
 start-of-selection.
 
   perform get_data.
-  perform set_fcat.
+  perform set_fcat using 'CARRID' 'Airline Code' 'Airline Code' 'Airline Code'.
+  perform set_fcat using 'CARRNAME' 'Airline name' 'Airline name' 'Airline name'.
+  perform set_fcat using 'CURRCODE' 'Currency' 'Airline Currency' 'Local currency of airline'.
+  perform set_fcat using 'URL' 'Airline URL' 'Airline URL' 'Airline URL'.
   perform set_layout.
   perform display_alv.
 
@@ -37,38 +40,51 @@ endform.
 *&---------------------------------------------------------------------*
 *       text
 *----------------------------------------------------------------------*
-*  -->  p1        text
-*  <--  p2        text
+*      -->P_P_NAME  text
+*      -->P_P_SEL_S  text
+*      -->P_P_SEL_M  text
+*      -->P_P_SEL_L  text
 *----------------------------------------------------------------------*
-form set_fcat .
+form set_fcat  using  p_p_name
+                      p_p_sel_s
+                      p_p_sel_m
+                      p_p_sel_l.
 
-  gs_fieldcatalog-fieldname = 'CARRID'.
-  gs_fieldcatalog-seltext_s = 'Airline Code'.
-  gs_fieldcatalog-seltext_m = 'Airline Code'.
-  gs_fieldcatalog-seltext_l = 'Airline Code'.
+  gs_fieldcatalog-fieldname = p_p_name.
+  gs_fieldcatalog-seltext_s = p_p_sel_s .
+  gs_fieldcatalog-seltext_m = p_p_sel_m.
+  gs_fieldcatalog-seltext_l = p_p_sel_l.
   append gs_fieldcatalog to gt_fieldcatalog.
   clear: gs_fieldcatalog.
 
-  gs_fieldcatalog-fieldname = 'CARRNAME'.
-  gs_fieldcatalog-seltext_s = 'Airline name'.
-  gs_fieldcatalog-seltext_m = 'Airline name'.
-  gs_fieldcatalog-seltext_l = 'Airline name'.
-  append gs_fieldcatalog to gt_fieldcatalog.
-  clear: gs_fieldcatalog.
+*  gs_fieldcatalog-fieldname = 'CARRID'.
+*  gs_fieldcatalog-seltext_s = 'Airline Code'.
+*  gs_fieldcatalog-seltext_m = 'Airline Code'.
+*  gs_fieldcatalog-seltext_l = 'Airline Code'.
+*  append gs_fieldcatalog to gt_fieldcatalog.
+*  clear: gs_fieldcatalog.
+*
+*  gs_fieldcatalog-fieldname = 'CARRNAME'.
+*  gs_fieldcatalog-seltext_s = 'Airline name'.
+*  gs_fieldcatalog-seltext_m = 'Airline name'.
+*  gs_fieldcatalog-seltext_l = 'Airline name'.
+*  append gs_fieldcatalog to gt_fieldcatalog.
+*  clear: gs_fieldcatalog.
+*
+*  gs_fieldcatalog-fieldname = 'CURRCODE'.
+*  gs_fieldcatalog-seltext_s = 'Currency'.
+*  gs_fieldcatalog-seltext_m = 'Airline Currency'.
+*  gs_fieldcatalog-seltext_l = 'Local currency of airline'.
+*  append gs_fieldcatalog to gt_fieldcatalog.
+*  clear: gs_fieldcatalog.
+*
+*  gs_fieldcatalog-fieldname = 'URL'.
+*  gs_fieldcatalog-seltext_s = 'Airline URL'.
+*  gs_fieldcatalog-seltext_m = 'AAirline URL'.
+*  gs_fieldcatalog-seltext_l = 'Airline URL'.
+*  append gs_fieldcatalog to gt_fieldcatalog.
+*  clear: gs_fieldcatalog.
 
-  gs_fieldcatalog-fieldname = 'CURRCODE'.
-  gs_fieldcatalog-seltext_s = 'Currency'.
-  gs_fieldcatalog-seltext_m = 'Airline Currency'.
-  gs_fieldcatalog-seltext_l = 'Local currency of airline'.
-  append gs_fieldcatalog to gt_fieldcatalog.
-  clear: gs_fieldcatalog.
-
-  gs_fieldcatalog-fieldname = 'URL'.
-  gs_fieldcatalog-seltext_s = 'Airline URL'.
-  gs_fieldcatalog-seltext_m = 'AAirline URL'.
-  gs_fieldcatalog-seltext_l = 'Airline URL'.
-  append gs_fieldcatalog to gt_fieldcatalog.
-  clear: gs_fieldcatalog.
 
 endform.
 *&---------------------------------------------------------------------*
