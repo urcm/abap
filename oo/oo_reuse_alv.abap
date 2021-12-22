@@ -60,20 +60,11 @@ class reuse_alv implementation.
     clear: gs_fieldcatalog.
 
   endmethod.
-
-*&---------------------------------------------------------------------*
-*&      Form  SET_LAYOUT
-*&---------------------------------------------------------------------*
-*       text
-*----------------------------------------------------------------------*
-*  -->  p1        text
-*  <--  p2        text
-*----------------------------------------------------------------------*
-form set_layout .
-
-  gs_layout-window_titlebar = 'SCARR Reuse ALV Test'.
-  gs_layout-colwidth_optimize = abap_true.
-  gs_layout-zebra             = abap_true.
-
-
-endform.
+  
+ method set_layout.
+ 
+    gs_layout-window_titlebar   = 'Reuse ALV in OO Use'.
+    gs_layout-zebra             = abap_true.
+    gs_layout-colwidth_optimize = abap_true.
+    
+  endmethod.
