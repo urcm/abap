@@ -10,6 +10,7 @@ class reuse_alv definition.
 
     methods: get_data,
       set_fcat,
+      set_layout,
       set_alv.
 endclass.
 
@@ -18,6 +19,7 @@ class reuse_alv implementation.
 
     get_data( ).
     set_fcat( ).
+    set_layout( ).
     set_alv( ).
 
   endmethod.
