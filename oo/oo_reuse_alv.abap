@@ -128,5 +128,10 @@ class reuse_alv implementation.
 * Implement suitable error handling here
     endif.
 
-
   endmethod.
+  endclass.
+
+start-of-selection.
+  data(ralv) = new reuse_alv( ).
+  create object ralv.
+
