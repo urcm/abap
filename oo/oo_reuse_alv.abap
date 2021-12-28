@@ -104,6 +104,17 @@ class reuse_alv implementation.
     
   endmethod.
   
+    method set_fc_details.
+
+    gs_fieldcatalog-fieldname = f_name.
+    gs_fieldcatalog-seltext_s = selt_s.
+    gs_fieldcatalog-seltext_m = selt_m.
+    gs_fieldcatalog-seltext_l = selt_l.
+
+    append gs_fieldcatalog to gt_fieldcatalog.
+    clear: gs_fieldcatalog.
+
+  endmethod.
   
     method set_alv.
 
