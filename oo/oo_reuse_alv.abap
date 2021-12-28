@@ -10,9 +10,16 @@ class reuse_alv definition.
           gs_layout       type slis_layout_alv.
 
     methods: get_data,
-      set_fcat,
-      set_layout,
-      set_alv.
+          set_fcat,
+          set_layout,
+          set_alv.
+          
+   methods: set_fc_details importing
+                              f_name type string
+                              selt_s type string
+                              selt_m type string
+                              selt_l type string.        
+      
 endclass.
 
 class reuse_alv implementation.
