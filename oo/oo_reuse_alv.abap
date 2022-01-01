@@ -7,7 +7,9 @@ class reuse_alv definition.
     data: gt_scarr        type table of scarr,
           gt_fieldcatalog type slis_t_fieldcat_alv,
           gs_fieldcatalog type slis_fieldcat_alv,
-          gs_layout       type slis_layout_alv.
+          gs_layout       type slis_layout_alv,
+          gt_events       type  slis_t_event,
+          gs_events       type slis_alv_event.
 
     methods: get_data,
           set_fcat,
@@ -125,7 +127,7 @@ class reuse_alv implementation.
 *       I_BUFFER_ACTIVE    = ' '
         i_callback_program = sy-repid
 *       I_CALLBACK_PF_STATUS_SET          = ' '
-*       I_CALLBACK_USER_COMMAND           = ' '
+        I_CALLBACK_USER_COMMAND           = 'USER_COMMAND'
 *       I_CALLBACK_TOP_OF_PAGE            = ' '
 *       I_CALLBACK_HTML_TOP_OF_PAGE       = ' '
 *       I_CALLBACK_HTML_END_OF_LIST       = ' '
@@ -143,7 +145,7 @@ class reuse_alv implementation.
 *       I_DEFAULT          = 'X'
 *       I_SAVE             = ' '
 *       IS_VARIANT         =
-*       IT_EVENTS          =
+        IT_EVENTS          = gt_events
 *       IT_EVENT_EXIT      =
 *       IS_PRINT           =
 *       IS_REPREP_ID       =
@@ -173,6 +175,55 @@ class reuse_alv implementation.
 
   endmethod.
   endclass.
+
+
+form top_of_page.
+
+  data: gt_header type slis_t_listheader,
+        gs_header type slis_listheader.
+
+  data: l_date type char10.
+  write sy-datum to l_date.
+
+  clear: gs_header.
+  gs_header-typ = 'H'.
+  concatenate sy-repid '-' 'Date' l_date into gs_header-info separated by space.
+  append gs_header to gt_header.
+
+  clear: gs_header.
+  gs_header-typ = 'S'.
+  gs_header-info = sy-title.
+  append gs_header to gt_header.
+
+  clear: gs_header.
+  gs_header-typ = 'A'.
+  gs_header-info = sy-uname.
+  append gs_header to gt_header.
+
+  call function 'REUSE_ALV_COMMENTARY_WRITE'
+    exporting
+      it_list_commentary = gt_header
+*     I_LOGO             =
+*     I_END_OF_LIST_GRID =
+*     I_ALV_FORM         =
+    .
+
+
+
+endform.
+  
+form user_command using gs_ucomm like sy-ucomm
+                        gs_selfield type slis_selfield.
+
+  break-point.
+  case gs_ucomm.
+    when '&IC1'.
+      message gs_selfield-value type 'I'.
+
+  endcase.
+
+endform.
+
 
 start-of-selection.
   data(ralv) = new reuse_alv( ).
