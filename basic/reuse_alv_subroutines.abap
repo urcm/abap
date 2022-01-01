@@ -121,7 +121,7 @@ form display_alv .
 *     I_BUFFER_ACTIVE    = ' '
       i_callback_program = sy-repid
 *     I_CALLBACK_PF_STATUS_SET          = ' '
-*     I_CALLBACK_USER_COMMAND           = ' '
+      I_CALLBACK_USER_COMMAND           = 'USER_COMMAND'
 *     I_CALLBACK_TOP_OF_PAGE            = ' '
 *     I_CALLBACK_HTML_TOP_OF_PAGE       = ' '
 *     I_CALLBACK_HTML_END_OF_LIST       = ' '
@@ -166,5 +166,26 @@ form display_alv .
   if sy-subrc <> 0.
 * Implement suitable error handling here
   endif.
+
+endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  USER_COMMAND
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+
+form user_command using gs_ucomm like sy-ucomm
+                        gs_selfield type slis_selfield.
+
+  break-point.
+  case gs_ucomm.
+    when '&IC1'.
+      message gs_selfield-value type 'I'.
+
+  endcase.
 
 endform.
