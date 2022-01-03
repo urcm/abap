@@ -51,3 +51,29 @@ module status_0100 output.
 * message id sy-msgid type sy-msgty number sy-msgno
 *            with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
+
+ create object alv_grid
+    exporting
+*     i_shellstyle      = 0    " Control Style
+*     i_lifetime        =     " Lifetime
+      i_parent = alv_container    " Parent Container
+*     i_appl_events     = SPACE    " Register Events as Application Events
+*     i_parentdbg       =     " Internal, Do not Use
+*     i_applogparent    =     " Container for Application Log
+*     i_graphicsparent  =     " Container for Graphics
+*     i_name   =     " Name
+*     i_fcat_complete   = SPACE    " Boolean Variable (X=True, Space=False)
+    exceptions
+*     error_cntl_create = 1
+*     error_cntl_init   = 2
+*     error_cntl_link   = 3
+*     error_dp_create   = 4
+      others   = 5.
+  if sy-subrc <> 0.
+* message id sy-msgid type sy-msgty number sy-msgno
+*            with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+
+  perform set_fcat.
+  
+  endmodule.
