@@ -132,3 +132,42 @@ module user_command_0100 input.
 
 
 endmodule.
+
+*&---------------------------------------------------------------------*
+*&      Form  SET_FCAT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_fcat .
+
+  data: ls_fcat type lvc_s_fcat.
+
+  refresh: gt_fcat.
+
+  clear: ls_fcat.
+
+  ls_fcat-reptext   = 'Airline Code'.
+  ls_fcat-fieldname = 'CARRID'.
+  ls_fcat-ref_table = 'G_TAB'.
+  ls_fcat-outputlen = '18'.
+  append ls_fcat to gt_fcat.
+
+  clear: ls_fcat.
+  ls_fcat-reptext   = 'Flight Connection Number'.
+  ls_fcat-fieldname = 'CONNID'.
+  ls_fcat-ref_table = 'G_TAB'.
+  ls_fcat-outputlen = '25'.
+  append ls_fcat to gt_fcat.
+
+  clear: ls_fcat.
+  ls_fcat-reptext   = 'Airline Name'.
+  ls_fcat-fieldname = 'CARRNAME'.
+  ls_fcat-ref_table = 'G_TAB'.
+  ls_fcat-outputlen = '18'.
+  append ls_fcat to gt_fcat.
+
+
+endform.
