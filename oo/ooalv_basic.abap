@@ -8,6 +8,23 @@ data: gt_tab type table of g_tab.
 data: alv_container type ref to cl_gui_custom_container,
       alv_grid      type ref to cl_gui_alv_grid.
 
+data: alv_container type ref to cl_gui_custom_container,
+      alv_grid      type ref to cl_gui_alv_grid.
+      
+data: gt_fcat type lvc_t_fcat.
+
+class lcl_eventhandler definition.
+  public section.
+    class-methods:
+      handle_doubleclick for event double_click of cl_gui_alv_grid
+        importing
+            e_row
+            e_column
+            es_row_no
+            sender.
+
+endclass.
+
 start-of-selection.
 
   select
