@@ -25,6 +25,47 @@ class lcl_eventhandler definition.
 
 endclass.
 
+class lcl_eventhandler implementation.
+
+  method handle_doubleclick.
+
+    data: ls_gtab type g_tab,
+          lv_mess type char200.
+
+    read table gt_tab into ls_gtab index e_row-index.
+
+*  data(ls_gtab) = gt_tab[ e_row ].
+
+*    concatenate 'Clicked Row: '
+*                e_column-fieldname
+*                'Row Data: '
+*                ls_gtab-carrid
+*                ls_gtab-carrname
+*                ls_gtab-connid
+*                into lv_mess
+*                separated by space.
+
+    lv_mess = | 'Clicked Row: ' { e_column-fieldname } 'Carrid: ' { ls_gtab-carrid } 'Connid: ' {  ls_gtab-connid } 'Carrname: ' { ls_gtab-carrname } |.
+
+*    message lv_mess type 'I'.
+
+    call method alv_grid->set_current_cell_via_id
+      exporting
+*       is_row_id =     " Row
+*       is_column_id =     " Column
+        is_row_no = es_row_no.    " Numeric Row ID
+
+    call method cl_gui_cfw=>set_new_ok_code
+      exporting
+        new_code = 'DETAIL'    " New OK_CODE
+*  importing
+*       rc       =     " Return code
+      .
+
+
+  endmethod.
+
+
 start-of-selection.
 
   select
