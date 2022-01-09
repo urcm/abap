@@ -134,6 +134,8 @@ module status_0100 output.
 
   perform set_fcat.
   
+  set handler: lcl_eventhandler=>handle_doubleclick for alv_grid.
+  
   call method alv_grid->set_table_for_first_display
 *  exporting
 *    i_buffer_active               =     " Buffering Active
@@ -229,3 +231,66 @@ form set_fcat .
 
 
 endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  SHOW_DETAILS
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form show_details .
+
+  call method alv_grid->get_current_cell
+    importing
+      e_row = data(ld_row)    " Row on Grid
+*     e_value   =     " Value
+*     e_col =     " Column on Grid
+*     es_row_id =     " Row ID
+*     es_col_id =     " Column ID
+*     es_row_no =     " Numeric Row ID
+    .
+
+
+
+  if line_exists( gt_tab[ ld_row ] ).
+
+    data(ls_scarr) = gt_tab[ ld_row ].
+
+    select * from sflight into table @data(gt_sflight)
+      where carrid = @ls_scarr-carrid.
+
+
+*  cl_demo_output=>display( gt_sflight ).
+
+    cl_salv_table=>factory(
+*    exporting
+*    list_display   = IF_SALV_C_BOOL_SAP=>FALSE    " ALV Displayed in List Mode
+*    r_container    =     " Abstract Container for GUI Controls
+*    container_name =
+      importing
+        r_salv_table   = go_alv    " Basis Class Simple ALV Tables
+      changing
+        t_table        = gt_sflight
+    ).
+*  catch cx_salv_msg.    "
+
+    go_functions = go_alv->get_functions( ).
+    go_functions->set_default( 'X' ).
+
+    go_alv->set_screen_popup(
+            start_column = 30
+            end_column   = 140
+            start_line   = 3
+            end_line     = 20
+  ).
+    go_alv->display( ).
+    clear: ld_row.
+
+  endif.
+
+
+
+endform.
+
