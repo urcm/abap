@@ -50,3 +50,33 @@ class lcl_eventhandler implementation.
   endmethod.
 
 endclass.
+
+start-of-selection.
+
+  select * from scarr into table gt_scarr.
+
+  create object go_docking
+    exporting
+      parent = cl_gui_container=>screen0   " Parent container
+*     repid  =     " Report to Which This Docking Control is Linked
+*     dynnr  =     " Screen to Which This Docking Control is Linked
+*     side   = DOCK_AT_LEFT    " Side to Which Control is Docked
+*     extension                   = 50    " Control Extension
+*     style  =     " Windows Style Attributes Applied to This Docking Container
+*     lifetime                    = LIFETIME_DEFAULT    " Lifetime
+*     caption                     =     " Caption
+*     metric = 0    " Metric
+      ratio  = 90    " Percentage of Screen: Takes Priority Over EXTENSION
+*     no_autodef_progid_dynnr     =     " Don't Autodefined Progid and Dynnr?
+*     name   =     " Name
+    exceptions
+*     cntl_error                  = 1
+*     cntl_system_error           = 2
+*     create_error                = 3
+*     lifetime_error              = 4
+*     lifetime_dynpro_dynpro_link = 5
+      others = 6.
+  if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
