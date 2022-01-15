@@ -105,3 +105,18 @@ start-of-selection.
 *     message id sy-msgid type sy-msgty number sy-msgno
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
+  
+  
+  call method go_splitter->get_container
+    exporting
+      row    = 1    " Row
+      column = 1    " Column
+    receiving
+     container =  go_cell_top   " Container
+    .
+  call method go_splitter->get_container
+    exporting
+      row    = 2    " Row
+      column = 1   " Column
+    receiving
+     container = go_cell_bottom    " Container
