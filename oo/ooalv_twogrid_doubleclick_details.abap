@@ -120,3 +120,51 @@ start-of-selection.
       column = 1   " Column
     receiving
      container = go_cell_bottom    " Container
+     
+     
+  create object go_grid1
+    exporting
+*     i_shellstyle      = 0    " Control Style
+*     i_lifetime        =     " Lifetime
+      i_parent = go_cell_top   " Parent Container
+*     i_appl_events     = SPACE    " Register Events as Application Events
+*     i_parentdbg       =     " Internal, Do not Use
+*     i_applogparent    =     " Container for Application Log
+*     i_graphicsparent  =     " Container for Graphics
+*     i_name   =     " Name
+*     i_fcat_complete   = SPACE    " Boolean Variable (X=True, Space=False)
+    exceptions
+*     error_cntl_create = 1
+*     error_cntl_init   = 2
+*     error_cntl_link   = 3
+*     error_dp_create   = 4
+      others   = 5.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+
+
+  set handler: lcl_eventhandler=>handle_double_click for go_grid1.
+
+  create object go_grid2
+    exporting
+*     i_shellstyle      = 0    " Control Style
+*     i_lifetime        =     " Lifetime
+      i_parent = go_cell_bottom   " Parent Container
+*     i_appl_events     = SPACE    " Register Events as Application Events
+*     i_parentdbg       =     " Internal, Do not Use
+*     i_applogparent    =     " Container for Application Log
+*     i_graphicsparent  =     " Container for Graphics
+*     i_name   =     " Name
+*     i_fcat_complete   = SPACE    " Boolean Variable (X=True, Space=False)
+    exceptions
+*     error_cntl_create = 1
+*     error_cntl_init   = 2
+*     error_cntl_link   = 3
+*     error_dp_create   = 4
+      others   = 5.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
