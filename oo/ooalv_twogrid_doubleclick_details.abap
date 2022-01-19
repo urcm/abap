@@ -145,7 +145,9 @@ start-of-selection.
   endif.
 
 
+
   set handler: lcl_eventhandler=>handle_double_click for go_grid1.
+
 
   create object go_grid2
     exporting
@@ -164,6 +166,39 @@ start-of-selection.
 *     error_cntl_link   = 3
 *     error_dp_create   = 4
       others   = 5.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+  
+  gs_layout-grid_title = 'Airline Information'.
+  call method go_grid1->set_table_for_first_display
+    exporting
+*     i_buffer_active  =     " Buffering Active
+*     i_bypassing_buffer            =     " Switch Off Buffer
+*     i_consistency_check           =     " Starting Consistency Check for Interface Error Recognition
+      i_structure_name = 'SCARR'   " Internal Output Table Structure Name
+*     is_variant       =     " Layout
+*     i_save           =     " Save Layout
+*     i_default        = 'X'    " Default Display Variant
+      is_layout        = gs_layout    " Layout
+*     is_print         =     " Print Control
+*     it_special_groups             =     " Field Groups
+*     it_toolbar_excluding          =     " Excluded Toolbar Standard Functions
+*     it_hyperlink     =     " Hyperlinks
+*     it_alv_graphics  =     " Table of Structure DTC_S_TC
+*     it_except_qinfo  =     " Table for Exception Quickinfo
+*     ir_salv_adapter  =     " Interface ALV Adapter
+    changing
+      it_outtab        = gt_scarr    " Output Table
+*     it_fieldcatalog  =     " Field Catalog
+*     it_sort          =     " Sort Criteria
+*     it_filter        =     " Filter Criteria
+    exceptions
+*     invalid_parameter_combination = 1
+*     program_error    = 2
+*     too_many_lines   = 3
+      others           = 4.
   if sy-subrc <> 0.
 *   message id sy-msgid type sy-msgty number sy-msgno
 *              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
