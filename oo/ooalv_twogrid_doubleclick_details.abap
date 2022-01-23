@@ -236,3 +236,25 @@ start-of-selection.
 *   message id sy-msgid type sy-msgty number sy-msgno
 *              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
+  
+  
+ call method go_docking->link
+    exporting
+      repid  = syst-repid   " REPID
+      dynnr  = '0100'    " DYNNR
+*     container                   =     " Container
+    exceptions
+*     cntl_error                  = 1
+*     cntl_system_error           = 2
+*     lifetime_dynpro_dynpro_link = 3
+      others = 4.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+    
+
+  call screen '0100'.
+  
+
+end-of-selection.
