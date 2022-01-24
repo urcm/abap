@@ -258,3 +258,26 @@ start-of-selection.
   
 
 end-of-selection.
+
+*&---------------------------------------------------------------------*
+*&      Module  STATUS_0100  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+module status_0100 output.
+  set pf-status '0100'.
+*  SET TITLEBAR 'xxx'.
+
+  call method go_grid2->refresh_table_display
+*    exporting
+*      is_stable      =     " With Stable Rows/Columns
+*      i_soft_refresh =     " Without Sort, Filter, etc.
+    exceptions
+*     finished       = 1
+      others = 2.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+
+endmodule.
