@@ -281,3 +281,25 @@ module status_0100 output.
   endif.
 
 endmodule.
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+module user_command_0100 input.
+
+  data(gd_code) = sy-ucomm.
+
+  case gd_code.
+    when '&BACK' or
+         '&CANCEL' or
+         '&EXIT'.
+      set screen 0.
+
+    when 'DETAIL'.
+      perform entry_show_details.
+    when others.
+  endcase.
+
+endmodule.
