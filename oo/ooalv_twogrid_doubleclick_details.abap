@@ -303,3 +303,37 @@ module user_command_0100 input.
   endcase.
 
 endmodule.
+
+*&---------------------------------------------------------------------*
+*&      Form  ENTRY_SHOW_DETAILS
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form entry_show_details .
+
+  call method go_grid1->get_current_cell
+    importing
+      e_row = data(ld_row)  " Row on Grid
+*     e_value   =     " Value
+*     e_col =     " Column on Grid
+*     es_row_id =     " Row ID
+*     es_col_id =     " Column ID
+*     es_row_no =    " Numeric Row ID
+    .
+
+  if line_exists( gt_scarr[ ld_row ] ).
+
+    data(ls_scarr) = gt_scarr[ ld_row ].
+
+    select * from sflight into table gt_sflight
+      where carrid eq ls_scarr-carrid.
+  else.
+    message 'File not found.' type 'I'.
+
+  endif.
+
+endform.
+
