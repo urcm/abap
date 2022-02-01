@@ -42,3 +42,30 @@ start-of-selection.
 *                                        folder         =
                                     ).
 *      catch cx_salv_msg.  "
+
+        loop at group <fs_spfli> assigning field-symbol(<fs_sub_spfli>).
+		
+          data(ob_carrid) = go_tree->get_nodes( )->add_node(
+                                          related_node   = go_subs->get_key( )
+                                          relationship   = cl_gui_column_tree=>relat_last_child
+                                          data_row       = <fs_sub_spfli>
+*                                          collapsed_icon =
+*                                          expanded_icon  =
+                                          row_style      = if_salv_c_tree_style=>intensified
+                                          text           = conv #( <fs_sub_spfli>-connid )
+*                                          visible        = ABAP_TRUE
+*                                          expander       =
+*                                          enabled        = ABAP_TRUE
+*                                          folder         =
+                                      ).
+*                                        catch cx_salv_msg.  "
+
+
+
+        endloop.
+      endloop.
+
+      go_tree->display( ).
+
+  endtry.
+  
