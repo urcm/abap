@@ -27,3 +27,7 @@ if go_grid is initial.
 *   message id sy-msgid type sy-msgty number sy-msgno
 *              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
+
+  gs_layout-edit = abap_true.
+
+  select * from scarr into table gt_scarr up to 100 rows.
