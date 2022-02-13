@@ -32,8 +32,6 @@ if go_grid is initial.
 
   select * from scarr into table gt_scarr up to 100 rows.
   
-  
-
   call method go_grid->set_table_for_first_display
     exporting
 **     i_buffer_active               =     " Buffering Active
@@ -66,4 +64,12 @@ if go_grid is initial.
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
 
-  endif.
+  call method go_grid->set_ready_for_input
+    exporting
+      i_ready_for_input = 1.
+
+  write: space.
+
+endif.
+
+
