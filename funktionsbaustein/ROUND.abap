@@ -18,5 +18,4 @@ if sy-subrc <> 0.
 * Implement suitable error handling here
 endif.
 
-
 write :/ zahl2.
