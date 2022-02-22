@@ -23,3 +23,28 @@ class lcl_handler definition.
             sender.
 
 endclass.
+
+class lcl_handler implementation.
+  method handle_double_click.
+    data: ls_scarr type scarr.
+
+    check ( sender = go_alv ).
+
+    read table gt_scarr into ls_scarr index e_row-index.
+
+    check ( ls_scarr-carrid is not initial ).
+
+    call method go_alv->set_current_cell_via_id
+      exporting
+*       is_row_id =     " Row
+*       is_column_id =     " Column
+        is_row_no = es_row_no.    " Numeric Row ID
+
+    call method cl_gui_cfw=>set_new_ok_code
+      exporting
+        new_code = '&ADDTEXT'     " New OK_CODE
+*    importing
+*       rc       =     " Return code
+      .
+  endmethod.
+endclass.
