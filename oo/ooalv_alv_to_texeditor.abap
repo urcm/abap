@@ -81,3 +81,28 @@ start-of-selection.
 *   message id sy-msgid type sy-msgty number sy-msgno
 *              with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
+        
+    create object go_splitter
+      exporting
+*       link_dynnr              =     " Screen Number
+*       link_repid              =     " Report Name
+*       shellstyle              =     " Window Style
+*       left    =     " Left-aligned
+*       top     =     " top
+*       width   =     " NPlWidth
+*       height  =     " Hght
+*       metric  = CNTL_METRIC_DYNPRO    " Metric
+*       align   = 15    " Alignment
+        parent  = go_docking   " Parent Container
+        rows    = 2    " Number of Rows to be displayed
+        columns = 1    " Number of Columns to be Displayed
+*       no_autodef_progid_dynnr =     " Don't Autodefined Progid and Dynnr?
+*       name    =     " Name
+      exceptions
+*       cntl_error              = 1
+*       cntl_system_error       = 2
+        others  = 3.
+    if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
