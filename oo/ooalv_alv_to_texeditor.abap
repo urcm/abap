@@ -106,3 +106,41 @@ start-of-selection.
 *     message id sy-msgid type sy-msgty number sy-msgno
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
+    
+    
+    call method go_splitter->get_container
+      exporting
+        row       = 1    " Row
+        column    = 1    " Column
+      receiving
+        container = go_cell_top.    " Container
+
+    call method go_splitter->get_container
+      exporting
+        row       = 2    " Row
+        column    = 1    " Column
+      receiving
+        container = go_cell_bottom.    " Container
+
+    create object go_text_editor
+      exporting
+*       max_number_chars           =     " maximum number of characters insertable into editor control
+*       style                      = 0    " control style, if initial a defined value is choosen
+        wordwrap_mode              = cl_gui_textedit=>wordwrap_at_fixed_position    " 0: OFF; 1: wrap a window border; 2: wrap at fixed position
+        wordwrap_position          = 0   " position of wordwrap, only makes sense with wordwrap_mode=2
+        wordwrap_to_linebreak_mode = cl_gui_textedit=>true    " eq 1: change wordwrap to linebreak; 0: preserve wordwraps
+*       filedrop_mode              = DROPFILE_EVENT_OFF    " event mode to handle drop of files on control
+        parent                     = go_cell_top   " Parent Container
+*       lifetime                   =     " for life time management
+*       name                       =     " name for the control
+      exceptions
+*       error_cntl_create          = 1
+*       error_cntl_init            = 2
+*       error_cntl_link            = 3
+*       error_dp_create            = 4
+*       gui_type_not_supported     = 5
+        others                     = 6.
+    if sy-subrc <> 0.
+* message id sy-msgid type sy-msgty number sy-msgno
+*            with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
