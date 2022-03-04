@@ -144,3 +144,19 @@ start-of-selection.
 * message id sy-msgid type sy-msgty number sy-msgno
 *            with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
+    
+      perform set_text_editor.
+
+
+
+    call method go_text_editor->set_text_as_r3table
+      exporting
+        table  = itext    " table with text
+      exceptions
+*       error_dp        = 1
+*       error_dp_create = 2
+        others = 3.
+    if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
