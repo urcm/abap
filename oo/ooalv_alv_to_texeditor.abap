@@ -147,8 +147,6 @@ start-of-selection.
     
       perform set_text_editor.
 
-
-
     call method go_text_editor->set_text_as_r3table
       exporting
         table  = itext    " table with text
@@ -160,3 +158,27 @@ start-of-selection.
 *     message id sy-msgid type sy-msgty number sy-msgno
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
+    
+    
+    create object go_alv
+      exporting
+*       i_shellstyle      = 0    " Control Style
+*       i_lifetime        =     " Lifetime
+        i_parent = go_cell_bottom    " Parent Container
+*       i_appl_events     = SPACE    " Register Events as Application Events
+*       i_parentdbg       =     " Internal, Do not Use
+*       i_applogparent    =     " Container for Application Log
+*       i_graphicsparent  =     " Container for Graphics
+*       i_name   =     " Name
+*       i_fcat_complete   = SPACE    " Boolean Variable (X=True, Space=False)
+      exceptions
+*       error_cntl_create = 1
+*       error_cntl_init   = 2
+*       error_cntl_link   = 3
+*       error_dp_create   = 4
+        others   = 5.
+    if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
+
