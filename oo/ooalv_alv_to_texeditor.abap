@@ -234,5 +234,12 @@ call method go_alv->set_table_for_first_display
 *     message id sy-msgid type sy-msgty number sy-msgno
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
-    
+        
+  else.
+    message 'Something goes wrong.' type 'I'.
+  endif.
+
+  call screen 0100.
+
+end-of-selection.
     
