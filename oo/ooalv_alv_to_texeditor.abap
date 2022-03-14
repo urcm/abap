@@ -242,4 +242,15 @@ call method go_alv->set_table_for_first_display
   call screen 0100.
 
 end-of-selection.
+
+*&---------------------------------------------------------------------*
+*&      Module  STATUS_0100  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+module status_0100 output.
+  set pf-status '0100'.  " contains push button "DETAIL"
+*  SET TITLEBAR 'xxx'.
+
+endmodule.                 " STATUS_0100  OUTPUT
     
