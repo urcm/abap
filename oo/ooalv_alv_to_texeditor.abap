@@ -253,4 +253,26 @@ module status_0100 output.
 *  SET TITLEBAR 'xxx'.
 
 endmodule.                 " STATUS_0100  OUTPUT
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+module user_command_0100 input.
+
+  data(gd_okcode) = sy-ucomm.
+
+  case gd_okcode.
+    when '&BACK' or '&CANCEL' or '&EXIT'.
+      set screen 0.
+    when '&ADDTEXT'.
+      perform add_text_ineditor.
+*      if not go_text_editor is initial.
+*        go_text_editor->free( ).
+**        clear go_text_editor.
+*      endif.
+
+  endcase.
+endmodule.
     
