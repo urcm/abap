@@ -275,4 +275,21 @@ module user_command_0100 input.
 
   endcase.
 endmodule.
+
+*&---------------------------------------------------------------------*
+*&      Form  SET_TEXT_EDITOR
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form set_text_editor .
+
+  xtext = 'This is a demo text editor.'.
+  append xtext to itext.
+  xtext = ' You can add more lines too.'.
+  append xtext to itext.
+
+endform.
     
