@@ -292,4 +292,45 @@ form set_text_editor .
   append xtext to itext.
 
 endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  ADD_TEXT_INEDITOR
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form add_text_ineditor .
+
+*  if go_text_editor is not initial.
+*    call method go_text_editor->delete_text.
+*
+*  endif.
+
+
+*  data: lv_messa type char200.
+*
+*  lv_messa = | { go_counter } |.
+*
+*  message lv_messa type 'I'.
+
+  if go_counter eq '0'.
+    call method cl_gui_cfw=>flush.
+    call method go_text_editor->delete_text.
+    clear: itext.
+  endif.
+
+  field-symbols: <fs_sflight> type sflight.
+  data: lv_mess type char200.
+
+  call method go_alv->get_current_cell
+    importing
+      e_row = data(li_row)    " Row on Grid
+*     e_value   =     " Value
+*     e_col =     " Column on Grid
+*     es_row_id =     " Row ID
+*     es_col_id =     " Column ID
+*     es_row_no =     " Numeric Row ID
+    .
     
