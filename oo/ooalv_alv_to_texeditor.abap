@@ -334,3 +334,28 @@ form add_text_ineditor .
 *     es_row_no =     " Numeric Row ID
     .
     
+   if line_exists( gt_scarr[ li_row ] ).
+    data(ls_scarr) = gt_scarr[ li_row ].
+
+    select * from sflight into table @data(gt_sflight)
+      where carrid = @ls_scarr-carrid.
+
+*    cl_demo_output=>display( gt_sflight ).
+
+    loop at gt_sflight assigning <fs_sflight>.
+      concatenate 'Data: '
+      <fs_sflight>-carrid
+      into lv_mess
+      separated by space.
+
+      append lv_mess to itext.
+    endloop.
+
+*    call method cl_gui_cfw=>flush.
+*    call method go_text_editor->delete_text.
+*    if go_text_editor is not initial.
+*    call method go_text_editor->delete_text.
+*
+*  endif.
+
+    
