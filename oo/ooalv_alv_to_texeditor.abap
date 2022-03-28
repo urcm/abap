@@ -358,4 +358,14 @@ form add_text_ineditor .
 *
 *  endif.
 
-    
+     call method go_text_editor->set_text_as_stream
+      exporting
+        text = itext.
+
+  else.
+    message 'Something goes wrong' type 'I'.
+  endif.
+
+  go_counter = go_counter + 1.
+
+endform.   
