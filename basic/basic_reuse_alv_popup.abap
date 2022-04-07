@@ -10,3 +10,19 @@ selection-screen begin of line.
 selection-screen pushbutton 2(30) but_data user-command button_clicked.
 selection-screen end of line.
 
+at selection-screen.
+  case sy-ucomm.
+    when 'BUTTON_CLICKED'.
+*      message 'Test' type 'I'.
+      perform popup_reuse_alv.
+  endcase.
+
+initialization.
+
+*  move: 'Daten empfangen' to but_data.
+  but_data = |{ icon_execute_object }  Daten empfangen|.
+
+start-of-selection.
+
+  write: 'Fertig.'.
+  
