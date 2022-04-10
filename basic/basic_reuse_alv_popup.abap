@@ -26,3 +26,22 @@ start-of-selection.
 
   write: 'Fertig.'.
   
+*&---------------------------------------------------------------------*
+*&      Form  POPUP_REUSE_ALV
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*  -->  p1        text
+*  <--  p2        text
+*----------------------------------------------------------------------*
+form popup_reuse_alv .
+
+  data: lv_title type char30 value 'Popup Window'.
+
+  select * from sflight into table gt_sflightup to 50 rows.
+
+  call function 'REUSE_ALV_FIELDCATALOG_MERGE'
+    exporting
+      i_structure_name = 'SFLIGHT'
+    changing
+      ct_fieldcat      = gt_fieldcat[].
