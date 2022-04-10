@@ -45,3 +45,33 @@ form popup_reuse_alv .
       i_structure_name = 'SFLIGHT'
     changing
       ct_fieldcat      = gt_fieldcat[].
+      
+  call function 'REUSE_ALV_POPUP_TO_SELECT'
+    exporting
+      i_title       = lv_title
+*     I_SELECTION   = 'X'
+*     I_ZEBRA       = ' '
+*     I_SCREEN_START_COLUMN   = 0
+*     I_SCREEN_START_LINE     = 0
+*     I_SCREEN_END_COLUMN     = 0
+*     I_SCREEN_END_LINE       = 0
+*     I_CHECKBOX_FIELDNAME    =
+*     I_LINEMARK_FIELDNAME    =
+*     I_SCROLL_TO_SEL_LINE    = 'X'
+      i_tabname     = '1'
+      it_fieldcat   = gt_fieldcat[]
+*     IT_EXCLUDING  =
+*     I_CALLBACK_PROGRAM      =
+*     I_CALLBACK_USER_COMMAND =
+      is_private    = gs_caller
+    importing
+      es_selfield   = gs_selfield
+      e_exit        = g_exit
+    tables
+      t_outtab      = gt_outtab
+    exceptions
+      program_error = 1
+      others        = 2.
+  if sy-subrc <> 0.
+    message i000(0k) with sy-subrc.
+  endif.
