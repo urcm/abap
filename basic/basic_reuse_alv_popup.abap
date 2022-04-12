@@ -75,3 +75,12 @@ form popup_reuse_alv .
   if sy-subrc <> 0.
     message i000(0k) with sy-subrc.
   endif.
+  
+*  write: / gs_selfield-tabname,
+*           gs_selfield-tabindex,
+*           gs_selfield-fieldname,
+*           gs_selfield-value.
+
+  perform result_screen using gs_selfield-fieldname gs_selfield-value.
+  
+endform.
