@@ -84,3 +84,27 @@ form popup_reuse_alv .
   perform result_screen using gs_selfield-fieldname gs_selfield-value.
   
 endform.
+
+*&---------------------------------------------------------------------*
+*&      Form  RESULT_SCREEN
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+*      -->P_GS_SELFIELD_FIELDNAME  text
+*      -->P_GS_SELFIELD_VALUE  text
+*----------------------------------------------------------------------*
+form result_screen  using    p_gs_selfield_fieldname
+                             p_gs_selfield_value.
+
+  data: lv_text type char200.
+
+
+  concatenate 'Selected fieldname: '
+              p_gs_selfield_fieldname
+              'Selected value: '
+              p_gs_selfield_value
+              into lv_text
+              separated by space.
+              
+endform.              
+         
