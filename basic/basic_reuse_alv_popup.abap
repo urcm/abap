@@ -106,5 +106,15 @@ form result_screen  using    p_gs_selfield_fieldname
               into lv_text
               separated by space.
               
+   message lv_text type 'I'.
+  
+  
+    call function 'SAPGUI_SET_FUNCTIONCODE' "
+    exporting
+      functioncode           = 'ONLI'     "  function code of execute button(F8)
+    exceptions
+      function_not_supported = 1.           
+              
+              
 endform.              
          
