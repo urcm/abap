@@ -2,7 +2,7 @@
 tables: scarr.
 
 types: begin of ty_scarr,
-         carrid   type   s_carr_id,
+         carrid   type  s_carr_id,
          carrname type  s_carrname,
          currcode type  s_currcode,
          url      type  s_carrurl,
@@ -77,3 +77,9 @@ call function 'GUI_DOWNLOAD'
     dataprovider_exception  = 20
     control_flush_error     = 21
     others                  = 22.
+
+if sy-subrc <> 0.
+* Implement suitable error handling here
+endif.
+
+cl_demo_output=>display( gt_scarr ).
