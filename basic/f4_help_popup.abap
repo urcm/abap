@@ -13,3 +13,12 @@ parameters: p_carrid type scarr-carrid.
 selection-screen end of line.
 
 selection-screen end of block b1.
+
+initialization.
+
+  title = 'F4 Help Section'.
+  lbl1 = 'Select Table: '.
+
+*parameters: p_carrid type scarr-carrid.
+
+at selection-screen on value-request for p_carrid.
