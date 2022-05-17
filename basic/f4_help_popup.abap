@@ -22,3 +22,8 @@ initialization.
 *parameters: p_carrid type scarr-carrid.
 
 at selection-screen on value-request for p_carrid.
+
+
+  field-symbols: <fs_return> like line of it_return.
+
+  refresh it_return[].
