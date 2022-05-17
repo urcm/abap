@@ -27,3 +27,11 @@ at selection-screen on value-request for p_carrid.
   field-symbols: <fs_return> like line of it_return.
 
   refresh it_return[].
+
+  select
+     sc~carrid
+     sf~connid
+     sc~carrname
+     from scarr as sc
+     inner join sflight as sf on sf~carrid eq sc~carrid
+     into corresponding fields of table it_scarr.
