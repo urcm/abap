@@ -35,3 +35,38 @@ at selection-screen on value-request for p_carrid.
      from scarr as sc
      inner join sflight as sf on sf~carrid eq sc~carrid
      into corresponding fields of table it_scarr.
+     
+     
+call function 'F4IF_INT_TABLE_VALUE_REQUEST'
+    exporting
+*     DDIC_STRUCTURE  = ' '
+      retfield        = 'CARRID'
+*     PVALKEY         = ' '
+      dynpprog        = sy-repid
+      dynpnr          = sy-dynnr
+      dynprofield     = 'P_CARRID'
+*     STEPL           = 0
+      window_title    = 'refdsgsdg'
+*     VALUE           = ' '
+      value_org       = 'S'
+*     MULTIPLE_CHOICE = ' '
+*     DISPLAY         = ' '
+*     CALLBACK_PROGRAM       = ' '
+*     CALLBACK_FORM   = ' '
+*     CALLBACK_METHOD =
+*     MARK_TAB        =
+* IMPORTING
+*     USER_RESET      =
+    tables
+      value_tab       = it_scarr
+*     FIELD_TAB       =
+      return_tab      = it_return
+*     DYNPFLD_MAPPING =
+    exceptions
+      parameter_error = 1
+      no_values_found = 2
+      others          = 3.
+  if sy-subrc <> 0.
+* Implement suitable error handling here
+  endif.
+     
