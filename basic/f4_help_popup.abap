@@ -66,7 +66,9 @@ call function 'F4IF_INT_TABLE_VALUE_REQUEST'
       parameter_error = 1
       no_values_found = 2
       others          = 3.
-  if sy-subrc <> 0.
-* Implement suitable error handling here
-  endif.
      
+  if sy-subrc = 0.
+    if lines( it_return ) > 0.
+      message it_return[ 1 ]-fieldval type 'S'.
+    endif.
+  endif.
