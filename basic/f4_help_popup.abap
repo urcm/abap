@@ -67,8 +67,17 @@ call function 'F4IF_INT_TABLE_VALUE_REQUEST'
       no_values_found = 2
       others          = 3.
      
+
   if sy-subrc = 0.
     if lines( it_return ) > 0.
       message it_return[ 1 ]-fieldval type 'S'.
     endif.
   endif.
+
+
+
+  read table it_return assigning <fs_return> index 1.
+  if sy-subrc = 0.
+    p_carrid = <fs_return>-fieldval.
+  endif.
+
