@@ -11,7 +11,9 @@ class lcl_salv_edit definition.
 
     methods: get_data.
     methods: create_salv.
-  
+    methods: salv_refresh for event after_refresh of cl_gui_alv_grid importing sender.
+
   private section.
+    data:handler_check type abap_bool.
   
 endclass.
