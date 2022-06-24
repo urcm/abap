@@ -17,3 +17,13 @@ class lcl_salv_edit definition.
     data:handler_check type abap_bool.
   
 endclass.
+
+class lcl_salv_edit implementation.
+
+  method constructor.
+    get_data( ).
+    create_salv( ).
+  endmethod.
+  
+  
+  endclass.
