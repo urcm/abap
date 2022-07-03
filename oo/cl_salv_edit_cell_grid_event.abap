@@ -23,7 +23,12 @@ class lcl_salv_edit implementation.
   method constructor.
     get_data( ).
     create_salv( ).
+  endmethod.  
+   
+  method get_data.
+
+    select * from scarr into table gt_scarr.
+
   endmethod.
-  
   
   endclass.
