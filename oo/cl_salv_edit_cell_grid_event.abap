@@ -31,4 +31,7 @@ class lcl_salv_edit implementation.
 
   endmethod.
   
+  method create_salv.
+  
+  endmethod.
   endclass.
