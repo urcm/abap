@@ -32,6 +32,16 @@ class lcl_salv_edit implementation.
   endmethod.
   
   method create_salv.
-  
+        cl_salv_table=>factory(
+*      exporting
+*        list_display   = IF_SALV_C_BOOL_SAP=>FALSE    " ALV Displayed in List Mode
+*        r_container    =     " Abstract Container for GUI Controls
+*        container_name =
+      importing
+        r_salv_table   = go_alv    " Basis Class Simple ALV Tables
+      changing
+        t_table        = gt_scarr
+    ).
+*      catch cx_salv_msg.    "
   endmethod.
   endclass.
