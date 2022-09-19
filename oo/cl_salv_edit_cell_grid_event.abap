@@ -43,5 +43,10 @@ class lcl_salv_edit implementation.
         t_table        = gt_scarr
     ).
 *      catch cx_salv_msg.    "
+
+    set handler salv_refresh for all instances.
+
+    go_alv->refresh( ).
+
   endmethod.
   endclass.
