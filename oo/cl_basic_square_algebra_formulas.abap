@@ -57,16 +57,16 @@ start-of-selection.
 
   go_math_square->math_square_diff( ).
 
-  write :/ go_math_square->lv_result.
-  
-  
+  write :/ 'a^2 - b^2 : ', go_math_square->lv_result.
+
+
   " Square a^2 + b^2
   go_math_square->lv_num1 = 4.
   go_math_square->lv_num2 = 2.
 
   go_math_square->math_square_sum( ).
 
-  write :/ go_math_square->lv_result.
+  write :/ 'a^2 + b^2 : ', go_math_square->lv_result.
 
   " Square (a + b)^2
   go_math_square->lv_num1 = 4.
@@ -74,7 +74,8 @@ start-of-selection.
 
   go_math_square->math_square_aplusb( ).
 
-  write :/ go_math_square->lv_result.
+  write :/ '(a + b)^2 :', go_math_square->lv_result.
+  
 
   " Square (a - b)^2
   go_math_square->lv_num1 = 4.
@@ -82,4 +83,6 @@ start-of-selection.
 
   go_math_square->math_square_aminb( ).
 
-  write :/ go_math_square->lv_result.
+  write :/ '(a - b)^2 : ', go_math_square->lv_result.
+
+
