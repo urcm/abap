@@ -54,4 +54,19 @@ class lcl_salv_edit implementation.
     go_alv->display( ).
 
   endmethod.
+  
+    method salv_refresh.
+    check handler_check eq abap_false.
+
+*    data: fcat type lvc_s_fcat.
+
+
+    sender->get_frontend_fieldcatalog(
+      importing
+        et_fieldcatalog = fcat    " Field Catalog
+    ).
+    
+    
+    endmethod.
+
   endclass.
