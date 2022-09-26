@@ -50,6 +50,8 @@ class lcl_salv_edit implementation.
         
     selections = go_alv->get_selections( ).
     selections->set_selection_mode(   if_salv_c_selection_mode=>cell  ). 
+    
+    go_alv->display( ).
 
   endmethod.
   endclass.
