@@ -66,6 +66,12 @@ class lcl_salv_edit implementation.
         et_fieldcatalog = fcat    " Field Catalog
     ).
     
+    assign fcat[ fieldname = 'CARRNAME' ] to field-symbol(<fcat>).
+    if sy-subrc eq 0.
+      <fcat>-edit = abap_true.
+    endif.
+
+    sender->set_frontend_fieldcatalog( it_fieldcatalog = fcat ).
     
     endmethod.
 
