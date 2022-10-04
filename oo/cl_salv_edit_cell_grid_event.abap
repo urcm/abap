@@ -73,6 +73,18 @@ class lcl_salv_edit implementation.
 
     sender->set_frontend_fieldcatalog( it_fieldcatalog = fcat ).
     
+        sender->register_edit_event(
+      exporting
+        i_event_id = sender->mc_evt_modified    " Event ID
+*      exceptions
+*        error      = 1
+*        others     = 2
+    ).
+    if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
+    
     endmethod.
 
   endclass.
