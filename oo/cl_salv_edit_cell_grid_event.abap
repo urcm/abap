@@ -85,6 +85,12 @@ class lcl_salv_edit implementation.
 *                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
     
+    sender->set_ready_for_input(
+        i_ready_for_input = 1
+    ).
+
+    handler_check = abap_true.
+    
     endmethod.
 
   endclass.
