@@ -89,7 +89,20 @@ class lcl_salv_edit implementation.
         i_ready_for_input = 1
     ).
 
-    handler_check = abap_true.
+    handler_check = abap_true.    
+    
+    sender->refresh_table_display(
+*      exporting
+*        is_stable      =     " With Stable Rows/Columns
+*        i_soft_refresh =     " Without Sort, Filter, etc.
+*      exceptions
+*        finished       = 1
+*        others         = 2
+    ).
+    if sy-subrc <> 0.
+*     message id sy-msgid type sy-msgty number sy-msgno
+*                with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
     
     endmethod.
 
