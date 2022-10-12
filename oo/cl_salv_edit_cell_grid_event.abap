@@ -106,4 +106,7 @@ class lcl_salv_edit implementation.
     
     endmethod.
 
-  endclass.
+  endclass.  
+  
+start-of-selection.
+  data(new_grid) = new lcl_salv_edit( ).
