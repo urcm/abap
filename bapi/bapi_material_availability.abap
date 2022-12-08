@@ -1,23 +1,21 @@
-data: gv_plant type werks,
-      gv_matnr type matnr,
-      gv_unit  type meins.
-
-
 data:  gs_wmdvsx type table of bapiwmdvs with header line,
        gs_wmdvex type table of bapiwmdve with header line.
 
 
-gv_plant = '0001'.
-gv_matnr = '0000000096'.
-gv_unit = 'PC'.
+selection-screen: begin of block i_form with frame title iv_form.
+parameters: p_plant type werks,
+            p_matnr type matnr,
+            p_unit  type meins.
+selection-screen: end of block i_form.
+
 
 start-of-selection.
 
   call function 'BAPI_MATERIAL_AVAILABILITY'
     exporting
-      plant    = gv_plant
-      material = gv_matnr
-      unit     = gv_unit
+      plant    = p_plant
+      material = p_matnr
+      unit     = p_unit
 *     CHECK_RULE               =
 *     STGE_LOC =
 *     BATCH    =
@@ -40,7 +38,6 @@ start-of-selection.
     tables
       wmdvsx   = gs_wmdvsx
       wmdvex   = gs_wmdvex.
-
-
+  
+  
   write :/ gs_wmdvsx-delkz, gs_wmdvsx-req_date, gs_wmdvsx-req_qty, gs_wmdvex-req_qty.
-
