@@ -30,8 +30,10 @@
      call_transaction_denied = 1
      tcode_invalid           = 2
      others                  = 3.
-
-
+     
+*  call transaction 'XK01' using gt_bdcdata
+*                     mode 'A' update 'S' messages into gt_bdcmsg.
+    
  data(lv_result) = switch char20( sy-subrc
     when 0 then 'Saved'
     when 1 then 'Call Transaction Denied'
