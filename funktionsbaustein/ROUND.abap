@@ -1,21 +1,35 @@
-data: zahl1 type p decimals 2 value '18.246',
-      zahl2 type p decimals 2.
+*"----------------------------------------------------------------------
+*"*"Lokale Schnittstelle:
+*"       IMPORTING
+*"              DECIMALS DEFAULT 0
+*"              INPUT
+*"              SIGN DEFAULT SPACE
+*"       EXPORTING
+*"              OUTPUT
+*"       EXCEPTIONS
+*"              INPUT_INVALID
+*"              OVERFLOW
+*"              TYPE_INVALID
+*"----------------------------------------------------------------------
 
-call function 'ROUND'
+
+data: lv_value type p decimals 6 value '245.784512'.
+data: lv_decimals type i value 4.
+data: lv_result type p decimals 3.
+
+
+call FUNCTION 'ROUND'
   exporting
-   DECIMALS            = 1
-    input               = zahl1
-   SIGN                = '-' " - sign round down & mit "-" Zeichen wird abgerundet.
- IMPORTING
-   OUTPUT              = zahl2
-* EXCEPTIONS
-*   INPUT_INVALID       = 1
-*   OVERFLOW            = 2
-*   TYPE_INVALID        = 3
-*   OTHERS              = 4
-          .
-if sy-subrc <> 0.
-* Implement suitable error handling here
-endif.
+    decimals      = lv_decimals    " Number decimal places, to which rounding is to be carried ou
+    input         = lv_value    " value to be rounded
+*    sign          = SPACE    " Flag for rounding up, rounding down, commercial roundoff
+  importing
+    output        =  lv_result   " rounded value
+*  exceptions
+*    input_invalid = 1
+*    overflow      = 2
+*    type_invalid  = 3
+*    others        = 4
+  .
 
-write :/ zahl2.
+cl_demo_output=>display( lv_result ).
