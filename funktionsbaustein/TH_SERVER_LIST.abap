@@ -42,3 +42,17 @@ call function 'TH_SERVER_LIST'
 if sy-subrc eq 0.
   cl_demo_output=>display( gt_list ).
 endif.
+
+
+
+*************************************************************
+SYSTEM-CALL
+
+data lv_server_name type c length 20.
+
+** get the name of the current server.
+
+call 'C_SAPGPARAM' id 'NAME' field 'rdisp/myname'
+id 'VALUE' field lv_server_name.
+
+write:/ lv_server_name input on.
