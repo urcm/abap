@@ -29,3 +29,24 @@ data: gt_selection_range type standard table of bapiussrge,
       gt_selection_exp   type standard table of bapiussexp,
       gt_userlist        type standard table of bapiusname,
       gt_return          type standard table of bapiret2.
+
+
+types: begin of gty_username,
+         username type xubname,
+       end of  gty_username.
+
+data: gt_username type standard table of gty_username.
+
+gt_selection_range = value #( (
+    parameter = 'LOGONDATA'
+    field     = 'USTYP'
+    sign      = 'I'
+    option    = 'EQ'
+    low       = 'A'
+    high      = '' ) (
+    parameter = 'LOGONDATA'
+    field     = 'UFLAG'
+    sign      = 'I'
+    option    = 'EQ'
+    low       = '0'
+    high      = '' ) ).
