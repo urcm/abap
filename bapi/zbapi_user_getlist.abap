@@ -50,3 +50,22 @@ gt_selection_range = value #( (
     option    = 'EQ'
     low       = '0'
     high      = '' ) ).
+    
+    
+call function 'BAPI_USER_GETLIST'
+  exporting
+*   max_rows        =     " Maximum Number of Lines of Hits
+    with_username   = space    " Read User with Name
+*  importing
+*   rows            =     " No. of users selected
+  tables
+    selection_range = gt_selection_range    " Search for Users with a Ranges Table
+*   selection_exp   = gt_selection_exp    " Search for Users with Free Selections
+    userlist        = gt_userlist    " User List
+    return          = gt_return.    " Return Parameter
+
+
+
+gt_username = corresponding #( gt_userlist ).
+*cl_demo_output=>display( gt_userlist ).
+cl_demo_output=>display( gt_username ).
