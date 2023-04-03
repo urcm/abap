@@ -100,3 +100,51 @@ data: gt_logondata    type bapilogond,
       gt_lastmodified type bapimoddat,
       gt_islocked     type bapislockd,
       gt_identity     type bapiidentity.
+      
+
+
+data: gt_return  type standard table of bapiret2.
+
+
+call function 'BAPI_USER_GET_DETAIL'
+  exporting
+    username     = sy-uname     " User Name
+*   cache_results  = 'X'    " Temporarily buffer results in work process
+  importing
+    logondata    = gt_logondata     " Structure with Logon Data
+    defaults     = gt_defaults   " Structure with User Defaults
+    address      = gt_address  " Address Data
+    company      = gt_company     " Company for Company Address
+    snc          = gt_snc    " Secure Network Communication Data
+    ref_user     = gt_ref_user    " User Name of the Reference User
+    alias        = gt_alias    " User Name Alias
+    uclass       = gt_uclass    " License-Related User Classification
+    lastmodified = gt_lastmodified    " User: Last Change (Date and Time)
+    islocked     = gt_islocked    " User Lock
+    identity     = gt_identity    " Person Assignment of an Identity
+    admindata    = gt_admindata    " User: Administration Data
+  tables
+*   parameter    =     " Table with User Parameters
+*   profiles     =     " Profiles
+*   activitygroups =     " Activity Groups
+    return       = gt_return    " Return Structure
+*   addtel       =     " BAPI Structure Telephone Numbers
+*   addfax       =     " BAPI Structure Fax Numbers
+*   addttx       =     " BAPI Structure Teletex Numbers
+*   addtlx       =     " BAPI Structure Telex Numbers
+*   addsmtp      =     " E-Mail Addresses BAPI Structure
+*   addrml       =     " Inhouse Mail BAPI Structure
+*   addx400      =     " BAPI Structure X400 Addresses
+*   addrfc       =     " BAPI Structure RFC Addresses
+*   addprt       =     " BAPI Structure Printer Addresses
+*   addssf       =     " BAPI Structure SSF Addresses
+*   adduri       =     " BAPI Structure: URL, FTP, and so on
+*   addpag       =     " BAPI Structure Pager Numbers
+*   addcomrem    =     " BAPI Structure Communication Comments
+*   parameter1   =     " Replaces Parameter (Length 18 -> 40)
+*   groups       =     " Transfer Structure for a List of User Groups
+*   uclasssys    =     " System-Specific License-Related User Classification
+*   extidhead    =     " Header Data for External ID of a User
+*   extidpart    =     " Part of a Long Field for the External ID of a User
+*   systems      =     " BAPI Structure for CUA Target Systems
+  .
