@@ -148,3 +148,19 @@ call function 'BAPI_USER_GET_DETAIL'
 *   extidpart    =     " Part of a Long Field for the External ID of a User
 *   systems      =     " BAPI Structure for CUA Target Systems
   .
+  
+
+cl_demo_output=>write_data( gt_logondata ).
+cl_demo_output=>write_data( gt_defaults ).
+cl_demo_output=>write_data( gt_address ).
+cl_demo_output=>write_data( gt_company ).
+cl_demo_output=>write_data( gt_admindata ).
+cl_demo_output=>write_data( gt_return ).
+cl_demo_output=>write_data( gt_snc ).
+cl_demo_output=>write_data( gt_ref_user ).
+cl_demo_output=>write_data( gt_alias ).
+cl_demo_output=>write_data( gt_uclass ).
+cl_demo_output=>write_data( gt_lastmodified ).
+cl_demo_output=>write_data( gt_islocked ).
+cl_demo_output=>write_data( gt_identity ).
+cl_demo_output=>display(  ).  
