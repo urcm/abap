@@ -145,3 +145,9 @@ call function 'SE16N_INTERFACE'
 *   no_values   = 1
 *   others      = 2
   .
+
+
+if sy-subrc <> 0.
+  message id sy-msgid type sy-msgty number sy-msgno
+             with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+endif.
