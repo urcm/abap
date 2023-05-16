@@ -95,3 +95,53 @@ data: i_tab       type se16n_tab value 'MARA',
       i_edit      type char1 value abap_true,
       i_sapedit   type char1 value abap_true,
       i_max_lines type sytabix value 50.
+
+call function 'SE16N_INTERFACE'
+  exporting
+    i_tab       =  " Table
+    i_edit      =  " Single-Character Indicator
+    i_sapedit   =  " Single-Character Indicator
+*   i_no_txt    = ' '    " Do not select any texts
+    i_max_lines = i_max_lines   " Maximum Number of Hits
+*   i_line_det  = ' '    " Only determine number of entries found
+*   i_display   = 'X'    " Display Results
+*   i_clnt_spez = ' '    " Client-dependent selection
+*   i_clnt_dep  = ' '    " Table is client-dependent
+*   i_variant   = ' '    " Layout
+*   i_old_alv   = ' '    " Not ALV grid
+*   i_checkkey  = ' '    " No foreign key check
+*   i_tech_names          = ' '    " Technical Name as Column Heading
+*   i_cwidth_opt_off      = ' '    " Deactivate Column Width Optimization
+*   i_scroll    = ' '    " KeyColumnsScrolab.
+*   i_no_convexit         = ' '    " Do not use conversion for output
+*   i_layout_get          = ' '    " Get last layout automatically
+*   i_add_field =     " Additional Field for Exit
+*   i_add_fields_on       =     " Use Field Exit
+*   i_uname     =     " User Name
+*   i_hana_active         = SPACE    " SAP HANA Mode Active
+*   i_dbcon     = SPACE    " Logical Name for a Database Connection
+*   i_ojkey     = SPACE    " Outer Join Definition
+*   i_display_all         = ' '    " Selection of all Records
+*  importing
+*   e_line_nr   =     " No. of entries found
+*   e_dref      =     " Pointer to the Results List
+*   et_fieldcat =     " Output List Field Catalog
+*  tables
+*   it_selfields          =     " Table Display: Selection Criteria
+*   it_output_fields      =     " Table Display: Output Fields
+*   it_or_selfields       =     " Transfer Table for Multiple Selection Criteria
+*   it_callback_events    =     " Event Table for SE16N
+*   it_add_up_curr_fields =     " Table Display: CURR Fields to be Added by Row
+*   it_add_up_quan_fields =     " Table Display: QUAN Fields to be Added by Row
+*   it_sum_up_fields      =     " Totaling Fields
+*   it_group_by_fields    =     " Grouping Fields
+*   it_order_by_fields    =     " Sort fields
+*   it_aggregate_fields   =     " Aggregation Fields
+*   it_toplow_fields      =     " Top Bottom Fields
+*   it_sortorder_fields   =     " Sort Sequence
+*  changing
+*   it_and_selfields      =     " SE16N: Table Type for AND Link
+*  exceptions
+*   no_values   = 1
+*   others      = 2
+  .
