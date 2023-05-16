@@ -98,9 +98,9 @@ data: i_tab       type se16n_tab value 'MARA',
 
 call function 'SE16N_INTERFACE'
   exporting
-    i_tab       =  " Table
-    i_edit      =  " Single-Character Indicator
-    i_sapedit   =  " Single-Character Indicator
+    i_tab       =  i_tab " Table
+    i_edit      =  i_edit " Single-Character Indicator
+    i_sapedit   =  i_sapedit " Single-Character Indicator
 *   i_no_txt    = ' '    " Do not select any texts
     i_max_lines = i_max_lines   " Maximum Number of Hits
 *   i_line_det  = ' '    " Only determine number of entries found
