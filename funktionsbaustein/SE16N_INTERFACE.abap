@@ -90,3 +90,8 @@
 *tables  it_toplow_fields   Top Bottom Fields
 *tables  it_sortorder_fields   Sort Sequence
 
+
+data: i_tab       type se16n_tab value 'MARA',
+      i_edit      type char1 value abap_true,
+      i_sapedit   type char1 value abap_true,
+      i_max_lines type sytabix value 50.
