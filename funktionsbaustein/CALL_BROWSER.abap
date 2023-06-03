@@ -26,3 +26,22 @@
 *importing  new_window   Under Win32: Open a New Window
 *importing  browser_type   Obsolete: Do Not Use
 *importing  contextstring   Obsolete: Do Not Use
+
+data: lv_url type char50 value 'http://www.sap.de'.
+
+
+call function 'CALL_BROWSER'
+  exporting
+    url                    = lv_url
+    new_window             = abap_true
+  exceptions
+    frontend_not_supported = 1
+    frontend_error         = 2
+    prog_not_found         = 3
+    no_batch               = 4
+    unspecified_error      = 5
+    others                 = 6.
+
+if sy-subrc eq 0.
+  write:/ 'OK.'.
+endif.
