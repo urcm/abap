@@ -3,3 +3,18 @@ parameters : pa_fname type zfirstname,
              pa_activ type zassets,             
              pa_liabs type zliabilities.
 
+
+class lcl_dataelm definition.  
+   public section.    
+    methods: constructor importing iv_fname type zfirstname16                                   
+                                   iv_lname type zlastname16                                   
+                                   iv_activ type zassets16                                   
+                                   iv_liabs type  zliabilities16.    
+
+    methods: calculate returning value(rv_status) type char50.  
+
+
+endclass.
+
+
+
