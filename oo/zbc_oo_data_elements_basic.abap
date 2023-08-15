@@ -31,6 +31,10 @@ class lcl_dataelm implementation.
 		mv_liabilities = iv_liabs.  
 	endmethod.  
 
+	method calculate.    
+		data(lv_result) = mv_activ - mv_liabilities.    
+		rv_status = mv_firstname && ` `  && mv_lastname && `  `  && me->mv_status && lv_result.  
+	endmethod.
 endclass.
 
 
