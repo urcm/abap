@@ -37,6 +37,11 @@ class lcl_dataelm implementation.
 	endmethod.
 endclass.
 
+start-of-selection.  
+data(lo_per) = new lcl_dataelm( iv_fname = pa_fname
+                                iv_lname = pa_lname
+				iv_activ = pa_activ
+				iv_liabs = pa_liabs  ).  
 
 
 
