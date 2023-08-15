@@ -23,5 +23,16 @@ class lcl_dataelm definition.
 
 endclass.
 
+class lcl_dataelm implementation.  
+	method constructor.    
+		mv_firstname = iv_fname.    
+		mv_lastname = iv_lname.    
+		mv_activ = iv_activ.    
+		mv_liabilities = iv_liabs.  
+	endmethod.  
+
+endclass.
+
+
 
 
