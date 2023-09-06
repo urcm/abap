@@ -25,3 +25,10 @@
 *"      NO_SPREAD_FOUND
 *"      DERIVED_2_TIMES
 *"----------------------------------------------------------------------
+
+
+parameters: pa_amnt type vbap-netwr,
+            pa_fcur    type vbap-waerk,
+            pa_lcur    type vbap-waerk.
+data : lv_result type vbap-netwr.
+
