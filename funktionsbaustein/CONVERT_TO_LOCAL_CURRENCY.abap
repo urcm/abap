@@ -32,3 +32,31 @@ parameters: pa_amnt type vbap-netwr,
             pa_lcur    type vbap-waerk.
 data : lv_result type vbap-netwr.
 
+call function 'CONVERT_TO_LOCAL_CURRENCY'
+  exporting
+*   CLIENT           = SY-MANDT
+    date             = sy-datum
+    foreign_amount   = pa_amnt
+    foreign_currency = pa_fcur
+    local_currency   = pa_lcur
+*   RATE             = 0
+*   TYPE_OF_RATE     = 'M'
+*   READ_TCURR       = 'X'
+  importing
+*   EXCHANGE_RATE    =
+*   FOREIGN_FACTOR   =
+    local_amount     = lv_result
+*   LOCAL_FACTOR     =
+*   EXCHANGE_RATEX   =
+*   FIXED_RATE       =
+*   DERIVED_RATE_TYPE       =
+  exceptions
+    no_rate_found    = 1
+    overflow         = 2
+    no_factors_found = 3
+    no_spread_found  = 4
+    derived_2_times  = 5.
+
+write: lv_result.
+
+
