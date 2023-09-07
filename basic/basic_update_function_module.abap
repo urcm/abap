@@ -19,3 +19,27 @@ gs_scarr = value scarr(
 call function 'Z16_INSERT_SCARR' in update task
   exporting
     iv_scarr = gs_scarr.
+
+
+gs_sflight = value sflight(
+    carrid     =  'ZA'
+connid     =  '400'
+fldate     =  sy-datum
+price      =  '185'
+currency   =  'EUR'
+planetype  =  'A321-200'
+seatsmax   =  '150'
+seatsocc   =  '144'
+paymentsum =  ''
+seatsmax_b =  '116'
+seatsocc_b =  '16'
+seatsmax_f =  '12'
+seatsocc_f =  '12'
+).
+
+call function 'Z16_INSERT_SFLIGHT' in update task
+  exporting
+    iv_sflight = gs_sflight.
+
+
+commit work.
