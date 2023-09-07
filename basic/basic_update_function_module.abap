@@ -1,3 +1,18 @@
+" Techniken der Verbuchung 
+* Die Verbuchung (CALL FUNCTION ... IN UPDATE TASK) ist die zentrale Technik zur Bündelung von Datenbankänderungen 
+* in einer einzigen Datenbank-LUW und damit zur Definition von SAP-LUWs in SAP-Transaktionen. 
+* In diesem Abschnitt beschreiben wir verschiedene Möglichkeiten zur Durchführung der Verbuchung.
+* Ein Programm kann einen Verbuchungsauftrag über COMMIT WORK
+
+* ·        an den Verbuchungs-Workprozess absetzen und den Auftrag asynchron verarbeiten lassen. Das Programm wartet dann nicht auf die Ausführung der Verbuchung (Asynchron verbuchen)
+
+* ·        bei der asynchronen Verbuchung in zwei verschiedene Verbuchungsabschnitte unterteilen (Asynchron in Abschnitten verbuchen)
+
+* ·        an den Verbuchungsworkprozess absetzen und den Auftrag synchron verarbeiten lassen. Das Programm wartet auf die Ausführung der Verbuchung (Synchron verbuchen)
+
+* ·        lokal an den eigenen Workprozess absetzen. Hier muss das Programm natürlich warten, bis der Workprozess die Verbuchung ausgeführt hat (Lokal verbuchen)
+
+
 delete from scarr where carrid = 'ZA'.
 delete from sflight where carrid = 'ZA'.
 
