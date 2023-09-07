@@ -16,9 +16,24 @@ gs_scarr = value scarr(
     url      = 'http://www.zedoair.com'
 ).
 
-call function 'Z16_INSERT_SCARR' in update task
+call function 'Z16_INSERT_SCARR' in update task " Wertübergabe wurde angekreuzt. aus den Eigenschaften Verbuchungsbaustein selektiert.
   exporting
     iv_scarr = gs_scarr.
+
+*"------------------------------------------------ ----------------------
+*"*"Update function module:
+*"
+*"*"Local Interface:
+*" IMPORT
+*" VALUE(IV_SCARR) TYPE SCARR
+*"------------------------------------------------ ----------------------
+
+*   insert into scarr values iv_scarr.
+*   if sy-subrc <> 0.
+*      message 'Duplicate record' type 'A'.
+*   final
+
+
 
 
 gs_sflight = value sflight(
