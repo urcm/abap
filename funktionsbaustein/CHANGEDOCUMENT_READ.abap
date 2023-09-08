@@ -28,3 +28,6 @@
 *"      NO_POSITION_FOUND
 *"      WRONG_ACCESS_TO_ARCHIVE
 *"      TIME_ZONE_CONVERSION_ERROR
+
+data: lv_objectclass like  cdhdr-objectclas value 'Z_DEMO'.
+data: lt_result type table of cdred.
