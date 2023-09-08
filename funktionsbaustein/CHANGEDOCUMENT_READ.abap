@@ -31,3 +31,38 @@
 
 data: lv_objectclass like  cdhdr-objectclas value 'Z_DEMO'.
 data: lt_result type table of cdred.
+
+
+call function 'CHANGEDOCUMENT_READ'
+  exporting
+*   ARCHIVE_HANDLE             = 0
+*   CHANGENUMBER               = ' '
+*   DATE_OF_CHANGE             = '00000000'
+    objectclass                = lv_objectclass
+*   OBJECTID                   = ' '
+*   TABLEKEY                   = ' '
+*   TABLENAME                  = ' '
+*   TIME_OF_CHANGE             = '000000'
+*   USERNAME                   = ' '
+*   LOCAL_TIME                 = ' '
+*   TIME_ZONE                  = 'UTC'
+*   TABLEKEY254                = ' '
+*   KEYGUID                    = ' '
+*   DATE_UNTIL                 = '99991231'
+*   TIME_UNTIL                 = '235959'
+*   KEYGUID_STR                = ' '
+*   READ_CHANGEDOCU            = ' '
+*   I_PREP_UNIT                = 'X'
+*   NOPLUS_ASWILDCARD_INOBJID  = ' '
+*   I_HOT                      = ' '
+* IMPORTING
+*   ET_CDRED_STR               =
+  tables
+    editpos                    = lt_result
+  exceptions
+    no_position_found          = 1
+    wrong_access_to_archive    = 2
+    time_zone_conversion_error = 3.
+
+
+cl_demo_output=>display( lt_result ).
