@@ -10,3 +10,7 @@
 *"      SEQUENCE_INVALID
 
 
+data: lv_objectclass like  cdhdr-objectclas value 'VERKBELEG',
+      lv_objectid    like  cdhdr-objectid value '1740056124'.
+
+
