@@ -13,4 +13,12 @@
 data: lv_objectclass like  cdhdr-objectclas value 'VERKBELEG',
       lv_objectid    like  cdhdr-objectid value '1740056124'.
 
+call function 'CHANGEDOCUMENT_OPEN'
+  exporting
+    objectclass      = lv_objectclass
+    objectid         = lv_objectid
+*   PLANNED_CHANGE_NUMBER         = ' '
+*   PLANNED_OR_REAL_CHANGES       = ' '
+  exceptions
+    sequence_invalid = 1.
 
