@@ -7,3 +7,11 @@ class lcl_demo definition.
 
 endclass.
 
+class lcl_demo implementation.
+
+  method make_addition.
+    rv_result = iv_num1 + iv_num2.
+  endmethod.
+
+endclass.
+
