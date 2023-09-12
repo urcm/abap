@@ -15,3 +15,23 @@ class lcl_demo implementation.
 
 endclass.
 
+data lv_result type i.
+
+start-of-selection.
+
+  data(go_add) = new lcl_demo( ).
+
+  lv_result = go_add->make_addition(             " Returning Parameter
+          iv_num1 = 4
+          iv_num2 = 5
+        ).
+  write :/ lv_result.
+
+  go_add->make_addition(                         " Receiving Parameter
+    exporting
+      iv_num1   = 4
+      iv_num2   = 5
+    receiving
+      rv_result = lv_result
+  ).
+  write :/ lv_result.
