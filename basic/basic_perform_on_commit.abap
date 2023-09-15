@@ -22,3 +22,12 @@ gs_scarr-currcode = 'USD'.
 gs_scarr-url = 'http://www.hansa.com'.
 perform second_commit on commit.
 
+gs_scarr-carrname = 'Lufthansa'.
+gs_scarr-currcode = 'EUR'.
+gs_scarr-url = 'http://www.lufthansa.com'.
+perform third_commit on commit.
+
+*write :/ 'Ohne Commit Work nichts'.
+COMMIT WORK.
+
+
