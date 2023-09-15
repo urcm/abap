@@ -31,3 +31,22 @@ perform third_commit on commit.
 COMMIT WORK.
 
 
+form first_commit.
+
+write: gs_scarr-carrid,
+       gs_scarr-carrname,
+       gs_scarr-currcode,
+       gs_scarr-url.
+
+endform.
+
+form second_commit.
+
+write: gs_scarr-carrid,
+       gs_scarr-carrname,
+       gs_scarr-currcode,
+       gs_scarr-url.
+
+endform.
+
+
