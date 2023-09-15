@@ -49,4 +49,16 @@ write: gs_scarr-carrid,
 
 endform.
 
+form third_commit.
+
+write: gs_scarr-carrid,
+       gs_scarr-carrname,
+       gs_scarr-currcode,
+       gs_scarr-url.
+
+endform.
+
+
+
+
 
