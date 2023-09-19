@@ -9,3 +9,12 @@ class lcl_space definition.
 
 endclass.
 
+class lcl_space implementation.
+  method constructor.
+    mv_info = 'There are a total of 8 planets in our solar system.'.
+    uline.
+  endmethod.
+  method display_info.
+    write :/ mv_info.
+  endmethod.
+endclass.
