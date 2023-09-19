@@ -18,3 +18,18 @@ class lcl_space implementation.
     write :/ mv_info.
   endmethod.
 endclass.
+
+
+class lcl_world definition inheriting from lcl_space.
+  public section.
+    methods display_info redefinition.
+    methods display_detail.
+  protected section.
+  private section.
+
+endclass.
+
+
+
+
+
