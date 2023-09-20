@@ -44,6 +44,14 @@ class lcl_world implementation.
   endmethod.
 endclass.
 
+class lcl_mercury definition inheriting from lcl_space.
+  public section.
+    methods display_info redefinition.
+    methods display_detail.
+  protected section.
+  private section.
+endclass.
+
 
 
 
