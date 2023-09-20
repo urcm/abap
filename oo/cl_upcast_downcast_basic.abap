@@ -7,7 +7,7 @@ class lcl_space definition.
     data mv_info type string.
   private section.
 
-endclass.
+endclass
 
 class lcl_space implementation.
   method constructor.
@@ -19,16 +19,21 @@ class lcl_space implementation.
   endmethod.
 endclass.
 
-
 class lcl_world definition inheriting from lcl_space.
   public section.
     methods display_info redefinition.
     methods display_detail.
   protected section.
   private section.
-
 endclass.
 
+class lcl_world implementation.
+  method display_info.
+*    super->display_info( ).
+    write :/ 'World: It ranks third in terms of proximity to the Sun. It has a satellite called the Moon.'.
+  endmethod.
+
+endclass.
 
 
 
