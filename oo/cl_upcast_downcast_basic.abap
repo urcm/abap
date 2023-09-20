@@ -1,3 +1,5 @@
+* Oberklasse
+
 class lcl_space definition.
   public section.
     methods constructor.
@@ -19,6 +21,10 @@ class lcl_space implementation.
   endmethod.
 endclass.
 
+*******************************************
+
+* Unterklasse
+
 class lcl_world definition inheriting from lcl_space.
   public section.
     methods display_info redefinition.
@@ -32,7 +38,10 @@ class lcl_world implementation.
 *    super->display_info( ).
     write :/ 'World: It ranks third in terms of proximity to the Sun. It has a satellite called the Moon.'.
   endmethod.
-
+  method display_detail.
+    write :/ 'It is the only planet in the solar system known to have life.'.
+    uline.
+  endmethod.
 endclass.
 
 
