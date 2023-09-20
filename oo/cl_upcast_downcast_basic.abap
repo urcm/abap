@@ -52,6 +52,17 @@ class lcl_mercury definition inheriting from lcl_space.
   private section.
 endclass.
 
+class lcl_mercury implementation.
+  method display_info.
+    uline.
+*    super->display_info( ).
+    write :/ 'Mercury: It is the smallest and closest planet to the Sun. It has no satellites or rings.'.
+  endmethod.
+  method display_detail.
+    write :/ 'Its mass is one twentieth of the mass of the Earth.'.
+  endmethod.
+endclass.
+
 
 
 
