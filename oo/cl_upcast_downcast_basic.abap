@@ -64,5 +64,12 @@ class lcl_mercury implementation.
 endclass.
 
 
+start-of-selection.
+  data go_space type ref to lcl_space.
+  create object go_space.
+  go_space->display_info( ).
 
+  data(go_world) = new lcl_world( ).
+  go_world->display_info( ).
+  go_world->display_detail( ).
 
