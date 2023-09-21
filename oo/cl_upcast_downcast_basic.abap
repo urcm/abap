@@ -73,3 +73,8 @@ start-of-selection.
   go_world->display_info( ).
   go_world->display_detail( ).
 
+* Narrowing Cast (Upcast) ****************************
+
+  go_space = go_world.
+  go_space->display_info( ).
+*  go_space->display_detail( ).   " die methode "DISPLAY_DETAIL" ist unbekannt bzw. PROTECTED oder PRIVATE.
