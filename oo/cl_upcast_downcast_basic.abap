@@ -86,3 +86,11 @@ start-of-selection.
 *  data go_space_new type ref to lcl_space.
 *  create object go_space_new type lcl_mercury.
   go_space = go_mercury .
+
+
+  try.
+      go_mercury ?= go_space. "go_space_new
+      go_mercury->display_info( ).
+      go_mercury->display_detail( ).
+    catch cx_root.
+  endtry.
