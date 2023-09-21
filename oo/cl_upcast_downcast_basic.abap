@@ -78,3 +78,11 @@ start-of-selection.
   go_space = go_world.
   go_space->display_info( ).
 *  go_space->display_detail( ).   " die methode "DISPLAY_DETAIL" ist unbekannt bzw. PROTECTED oder PRIVATE.
+
+* Widening Cast (Downcast) ***************************
+
+  data go_mercury type ref to lcl_mercury.
+  create object go_mercury.
+*  data go_space_new type ref to lcl_space.
+*  create object go_space_new type lcl_mercury.
+  go_space = go_mercury .
