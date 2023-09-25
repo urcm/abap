@@ -19,3 +19,8 @@ class lcl_event_handler implementation.
   endmethod.
 
 endclass.
+
+
+data: go_handler   type ref to lcl_event_handler,
+      go_container type ref to cl_gui_custom_container,
+      go_alv       type ref to cl_gui_alv_grid.
