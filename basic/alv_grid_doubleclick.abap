@@ -77,3 +77,35 @@ create object go_alv
   create object go_handler.
   set handler go_handler->on_double_click for go_alv.
 
+
+  call method go_alv->set_table_for_first_display
+     exporting
+* i_buffer_active = " Buffering active
+* i_bypassing_buffer = " Turn off buffer
+* i_consistency_check = " Start consistency check for interface error detection
+       i_structure_name = 'SPFLI' " Structure name of the internal output table
+* is_variant = " Display variant
+* i_save = " Save display variant
+* i_default = 'X' " Default display variant
+* is_layout = " Layout
+* is_print = " Print control
+* it_special_groups = " Field groups
+* it_toolbar_excluding = " excludes standard toolbar functions
+* it_hyperlink = " Hyperlinks
+* it_alv_graphics = " Table from structure DTC_S_TC
+* it_except_qinfo = " Table for the exception tooltip
+* ir_salv_adapter = " Interface ALV Adapter
+     changing
+       it_outtab = gt_spfli " Output table
+* it_fieldcatalog = " Field catalog
+* it_sort = " Sorting criteria
+* it_filter = " Filter criteria
+     exceptions
+       invalid_parameter_combination = 1 " Parameter incorrect
+       program_error = 2 " Program error
+       too_many_lines = 3 " Too many lines in input-ready grid.
+       others = 4.
+   if sy-subrc <> 0.
+* message id sy-msgid type sy-msgty number sy-msgno
+* with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+   endif.
