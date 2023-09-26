@@ -74,5 +74,6 @@ create object go_alv
 *     with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   endif.
 
-
+  create object go_handler.
+  set handler go_handler->on_double_click for go_alv.
 
