@@ -51,3 +51,28 @@ start-of-selection.
 *   with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     endif.
   endif.
+
+create object go_alv
+    exporting
+*     i_shellstyle      = 0                " Control Style
+*     i_lifetime        =                  " Lifetime
+      i_parent          = cl_gui_container=>screen0 "go_container                " Parent-Container
+*     i_appl_events     = space            " Ereignisse als Applikationsevents registrieren
+*     i_parentdbg       =                  " Internal, donnot use.
+*     i_applogparent    =                  " Container for application log
+*     i_graphicsparent  =                  " Container for graphics
+*     i_name            =                  " Name
+*     i_fcat_complete   = space            " boolsche Variable (X=true, space=false)
+    exceptions
+      error_cntl_create = 1                " Fehler beim Erzeugen des Controls
+      error_cntl_init   = 2                " Fehler beim Initialisieren des Controls
+      error_cntl_link   = 3                " Fehler beim Linken des Controls
+      error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
+      others            = 5.
+  if sy-subrc <> 0.
+*   message id sy-msgid type sy-msgty number sy-msgno
+*     with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  endif.
+
+
+
