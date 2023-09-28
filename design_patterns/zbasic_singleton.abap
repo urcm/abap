@@ -16,3 +16,7 @@ class lcl_singleton implementation.
   endmethod.
 endclass.
 
+data: go_singleton_a type ref to lcl_singleton.
+data: go_singleton_b type ref to lcl_singleton,
+      go_singleton_c type ref to lcl_singleton.
+
