@@ -27,3 +27,5 @@ at selection-screen on value-request for pa_var.
     pa_var = gs_variant-variant.
   endif.
 
+start-of-selection.
+  gs_variant-variant = pa_var.
