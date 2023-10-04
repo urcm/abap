@@ -4,7 +4,8 @@ types: begin of ts_sflight.
        end of ts_sflight.
 
 data: gt_sflight type standard table of ts_sflight.
-
+data: gt_fieldcat type lvc_t_fcat,
+      gs_fieldcat type lvc_s_fcat.
 
 
     call function 'LVC_FIELDCATALOG_MERGE'
