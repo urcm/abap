@@ -1,4 +1,9 @@
+types: begin of ts_sflight.
+         include type sflight.
+         types: light type c length 1,
+       end of ts_sflight.
 
+data: gt_sflight type standard table of ts_sflight.
 
 
 
