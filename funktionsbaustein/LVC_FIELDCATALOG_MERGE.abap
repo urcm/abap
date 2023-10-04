@@ -7,6 +7,8 @@ data: gt_sflight type standard table of ts_sflight.
 data: gt_fieldcat type lvc_t_fcat,
       gs_fieldcat type lvc_s_fcat.
 
+data gs_layout type lvc_s_layo.
+
 
     call function 'LVC_FIELDCATALOG_MERGE'
       exporting
