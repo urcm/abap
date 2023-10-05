@@ -10,6 +10,10 @@ data: gt_fieldcat type lvc_t_fcat,
 data gs_layout type lvc_s_layo.
 
 
+data: go_container type ref to cl_gui_custom_container,
+      go_grid      type ref to cl_gui_alv_grid.
+
+
     call function 'LVC_FIELDCATALOG_MERGE'
       exporting
         i_structure_name = 'SFLIGHT'
