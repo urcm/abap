@@ -13,6 +13,9 @@ data gs_layout type lvc_s_layo.
 data: go_container type ref to cl_gui_custom_container,
       go_grid      type ref to cl_gui_alv_grid.
 
+start-of-selection.
+
+  select * from sflight into corresponding fields of table gt_sflight.
 
     call function 'LVC_FIELDCATALOG_MERGE'
       exporting
