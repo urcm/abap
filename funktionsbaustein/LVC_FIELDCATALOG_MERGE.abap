@@ -17,6 +17,12 @@ start-of-selection.
 
   select * from sflight into corresponding fields of table gt_sflight.
 
+
+  loop at gt_sflight assigning field-symbol(<fs_sflight>).
+    if <fs_sflight>-seatsocc = 0.
+     endif.
+    endloop.
+
     call function 'LVC_FIELDCATALOG_MERGE'
       exporting
         i_structure_name = 'SFLIGHT'
