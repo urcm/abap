@@ -20,7 +20,13 @@ start-of-selection.
 
   loop at gt_sflight assigning field-symbol(<fs_sflight>).
     if <fs_sflight>-seatsocc = 0.
-     endif.
+      <fs_sflight>-light = '1'.
+    elseif <fs_sflight>-seatsocc < 50.
+      <fs_sflight>-light = '2'.
+    else.
+      <fs_sflight>-light = '3'.
+    endif.
+    modify gt_sflight from <fs_sflight>.
     endloop.
 
     call function 'LVC_FIELDCATALOG_MERGE'
