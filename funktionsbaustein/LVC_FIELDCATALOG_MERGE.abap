@@ -39,4 +39,14 @@ if go_grid is initial.
         error_cntl_link   = 3                " Fehler beim Linken des Controls
         error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
         others            = 5.
+
+    gs_layout-zebra = 'X'.
+    gs_layout-sel_mode = 'A'.
+    gs_layout-totals_bef = 'X'.
+    gs_layout-excp_fname = 'LIGHT'.
+    gs_layout-excp_led = 'X'.
+
+
+
+
 endif.
