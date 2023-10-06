@@ -29,8 +29,14 @@ start-of-selection.
     modify gt_sflight from <fs_sflight>.
     endloop.
 
-    call function 'LVC_FIELDCATALOG_MERGE'
+if go_grid is initial.
+    create object go_grid
       exporting
-        i_structure_name = 'SFLIGHT'
-      changing
-        ct_fieldcat      = gt_fieldcat.
+        i_parent          = cl_gui_container=>screen0                  " Parent-Container
+      exceptions
+        error_cntl_create = 1                " Fehler beim Erzeugen des Controls
+        error_cntl_init   = 2                " Fehler beim Initialisieren des Controls
+        error_cntl_link   = 3                " Fehler beim Linken des Controls
+        error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
+        others            = 5.
+endif.
