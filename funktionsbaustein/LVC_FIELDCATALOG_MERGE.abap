@@ -46,6 +46,11 @@ if go_grid is initial.
     gs_layout-excp_fname = 'LIGHT'.
     gs_layout-excp_led = 'X'.
 
+    call function 'LVC_FIELDCATALOG_MERGE'
+      exporting
+        i_structure_name = 'SFLIGHT'
+      changing
+        ct_fieldcat      = gt_fieldcat.
 
 
 
