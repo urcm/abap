@@ -56,4 +56,7 @@ if go_grid is initial.
     append gs_fieldcat to gt_fieldcat.
     clear gs_fieldcat.
 
+
+ go_grid->set_table_for_first_display( ).
+
 endif.
