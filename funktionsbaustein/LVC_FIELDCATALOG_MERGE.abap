@@ -52,6 +52,8 @@ if go_grid is initial.
       changing
         ct_fieldcat      = gt_fieldcat.
 
-
+    gs_fieldcat-fieldname = 'LIGHT'.
+    append gs_fieldcat to gt_fieldcat.
+    clear gs_fieldcat.
 
 endif.
