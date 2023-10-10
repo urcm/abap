@@ -57,6 +57,33 @@ if go_grid is initial.
     clear gs_fieldcat.
 
 
- go_grid->set_table_for_first_display( ).
+    go_grid->set_table_for_first_display(
+      exporting
+*    i_buffer_active               =                  " Pufferung aktiv
+*    i_bypassing_buffer            =                  " Puffer ausschalten
+*    i_consistency_check           =                  " Starte Konsistenzverprobung für Schnittstellefehlererkennung
+     i_structure_name              = 'SFLIGHT'                  " Strukturname der internen Ausgabetabelle
+*    is_variant                    =                  " Anzeigevariante
+*    i_save                        =                  " Anzeigevariante sichern
+*    i_default                     = 'X'              " Defaultanzeigevariante
+    is_layout                     =  gs_layout                " Layout
+*    is_print                      =                  " Drucksteuerung
+*    it_special_groups             =                  " Feldgruppen
+*    it_toolbar_excluding          =                  " excludierte Toolbarstandardfunktionen
+*    it_hyperlink                  =                  " Hyperlinks
+*    it_alv_graphics               =                  " Tabelle von der Struktur DTC_S_TC
+*    it_except_qinfo               =                  " Tabelle für die Exception Quickinfo
+*    ir_salv_adapter               =                  " Interface ALV Adapter
+      changing
+      it_outtab                     = gt_sflight                 " Ausgabetabelle
+    it_fieldcatalog               =   gt_fieldcat               " Feldkatalog
+*    it_sort                       =                  " Sortierkriterien
+*    it_filter                     =                  " Filterkriterien
+      exceptions
+        invalid_parameter_combination = 1                " Parameter falsch
+        program_error                 = 2                " Programmfehler
+        too_many_lines                = 3                " Zu viele Zeilen in eingabebereitem Grid.
+        others                        = 4
+    ).
 
 endif.
