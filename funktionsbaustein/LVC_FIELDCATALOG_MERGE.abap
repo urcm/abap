@@ -7,6 +7,7 @@ data: gt_sflight type standard table of ts_sflight.
 data: gt_fieldcat type lvc_t_fcat,
       gs_fieldcat type lvc_s_fcat.
 
+data gs_variant type disvariant.
 data gs_layout type lvc_s_layo.
 
 
@@ -17,7 +18,6 @@ start-of-selection.
 
   select * from sflight into corresponding fields of table gt_sflight.
 
-
   loop at gt_sflight assigning field-symbol(<fs_sflight>).
     if <fs_sflight>-seatsocc = 0.
       <fs_sflight>-light = '1'.
@@ -27,9 +27,9 @@ start-of-selection.
       <fs_sflight>-light = '3'.
     endif.
     modify gt_sflight from <fs_sflight>.
-    endloop.
+  endloop.
 
-if go_grid is initial.
+  if go_grid is initial.
     create object go_grid
       exporting
         i_parent          = cl_gui_container=>screen0                  " Parent-Container
@@ -40,11 +40,13 @@ if go_grid is initial.
         error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
         others            = 5.
 
+
     gs_layout-zebra = 'X'.
     gs_layout-sel_mode = 'A'.
     gs_layout-totals_bef = 'X'.
     gs_layout-excp_fname = 'LIGHT'.
     gs_layout-excp_led = 'X'.
+
 
     call function 'LVC_FIELDCATALOG_MERGE'
       exporting
@@ -55,7 +57,6 @@ if go_grid is initial.
     gs_fieldcat-fieldname = 'LIGHT'.
     append gs_fieldcat to gt_fieldcat.
     clear gs_fieldcat.
-
 
     go_grid->set_table_for_first_display(
       exporting
@@ -86,6 +87,8 @@ if go_grid is initial.
         others                        = 4
     ).
 
-else.
+  else.
     go_grid->refresh_table_display( ).
   endif.
+
+  write: space.
