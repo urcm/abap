@@ -86,4 +86,6 @@ if go_grid is initial.
         others                        = 4
     ).
 
-endif.
+else.
+    go_grid->refresh_table_display( ).
+  endif.
