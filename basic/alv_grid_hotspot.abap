@@ -30,7 +30,7 @@ class lcl_event_handler implementation.
   endmethod.
 
   method hotpsot_click.
-
+    cl_demo_output=>display( gt_spfli[ e_row_id-index ] ).
   endmethod.
 
 endclass.
