@@ -29,4 +29,8 @@ class lcl_event_handler implementation.
 
   endmethod.
 
+  method hotpsot_click.
+
+  endmethod.
+
 endclass.
