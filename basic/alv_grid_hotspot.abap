@@ -24,4 +24,9 @@ class lcl_event_handler implementation.
   method on_double_click.
     message | Zeile { es_row_no-row_id } und Spalte { e_column-fieldname } | type 'I'.
   endmethod.
+
+  method on_toolbar.
+
+  endmethod.
+
 endclass.
