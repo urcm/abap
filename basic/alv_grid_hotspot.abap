@@ -19,4 +19,7 @@ class lcl_event_handler definition.
 
 endclass.
 
+
+class lcl_event_handler implementation.
+
 endclass.
