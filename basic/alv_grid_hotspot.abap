@@ -30,7 +30,9 @@ class lcl_event_handler implementation.
   endmethod.
 
   method hotpsot_click.
-    cl_demo_output=>display( gt_spfli[ e_row_id-index ] ).
+    " cl_demo_output=>display( gt_spfli[ e_row_id-index ] ).
+    assign gt_spfli[ e_row_id-index ] to field-symbol(<fs_spfli>).
+    assign component e_column_id-fieldname of structure <fs_spfli> to field-symbol(<fs_fieldname>).
   endmethod.
 
 endclass.
