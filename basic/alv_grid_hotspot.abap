@@ -33,6 +33,11 @@ class lcl_event_handler implementation.
     " cl_demo_output=>display( gt_spfli[ e_row_id-index ] ).
     assign gt_spfli[ e_row_id-index ] to field-symbol(<fs_spfli>).
     assign component e_column_id-fieldname of structure <fs_spfli> to field-symbol(<fs_fieldname>).
+
+    cl_demo_output=>write_data( |Fieldname: { <fs_fieldname> }| ).
+    cl_demo_output=>write_data( <fs_spfli> ).
+    cl_demo_output=>display( ).
+
   endmethod.
 
 endclass.
