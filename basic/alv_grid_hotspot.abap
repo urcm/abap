@@ -61,4 +61,6 @@ start-of-selection.
         lifetime_dynpro_dynpro_link = 5                " LIFETIME_DYNPRO_DYNPRO_LINK
         others                      = 6.
 
+create object go_alv.
+
   endif.
