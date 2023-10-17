@@ -49,6 +49,16 @@ data: go_handler   type ref to lcl_event_handler,
 start-of-selection.
   select * from spfli into table gt_spfli.
 
-    if go_container is not bound.
+  if go_container is not bound.
+    create object go_container
+      exporting
+        container_name              = 'CONTAINER_1'                 " Name of the dynpro CustCtrl name to link this container to
+      exceptions
+        cntl_error                  = 1                " CNTL_ERROR
+        cntl_system_error           = 2                " CNTL_SYSTEM_ERROR
+        create_error                = 3                " CREATE_ERROR
+        lifetime_error              = 4                " LIFETIME_ERROR
+        lifetime_dynpro_dynpro_link = 5                " LIFETIME_DYNPRO_DYNPRO_LINK
+        others                      = 6.
 
-    endif.
+  endif.
