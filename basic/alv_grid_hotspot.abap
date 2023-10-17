@@ -49,4 +49,6 @@ data: go_handler   type ref to lcl_event_handler,
 start-of-selection.
   select * from spfli into table gt_spfli.
 
-start-of-selection.
+    if go_container is not bound.
+
+    endif.
