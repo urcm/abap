@@ -78,3 +78,6 @@ start-of-selection.
   set handler go_handler->on_double_click for go_alv.
   set handler go_handler->on_toolbar for go_alv.
   set handler go_handler->hotpsot_click for go_alv.
+
+* Feldcatalog
+
