@@ -61,6 +61,14 @@ start-of-selection.
         lifetime_dynpro_dynpro_link = 5                " LIFETIME_DYNPRO_DYNPRO_LINK
         others                      = 6.
 
-create object go_alv.
-
   endif.
+
+  create object go_alv
+    exporting
+      i_parent          = cl_gui_container=>screen0 "go_container                " Parent-Container
+    exceptions
+      error_cntl_create = 1                " Fehler beim Erzeugen des Controls
+      error_cntl_init   = 2                " Fehler beim Initialisieren des Controls
+      error_cntl_link   = 3                " Fehler beim Linken des Controls
+      error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
+      others            = 5.
