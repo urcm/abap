@@ -72,3 +72,7 @@ start-of-selection.
       error_cntl_link   = 3                " Fehler beim Linken des Controls
       error_dp_create   = 4                " Fehler beim Erzeugen des DataProvider Control
       others            = 5.
+
+
+  create object go_handler.
+  set handler go_handler->on_double_click for go_alv.
