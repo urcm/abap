@@ -81,3 +81,7 @@ start-of-selection.
 
 * Feldcatalog
 
+  clear gs_fieldcat.
+  gs_fieldcat-fieldname = 'CITYFROM'.
+  gs_fieldcat-hotspot = 'X'.
+
