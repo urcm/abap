@@ -84,4 +84,5 @@ start-of-selection.
   clear gs_fieldcat.
   gs_fieldcat-fieldname = 'CITYFROM'.
   gs_fieldcat-hotspot = 'X'.
+ append gs_fieldcat to gt_fieldcat.
 
