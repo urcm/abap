@@ -99,3 +99,5 @@ start-of-selection.
       program_error                 = 2 " Program error
       too_many_lines                = 3 " Too many lines in input-ready grid.
       others                        = 4.
+
+write: space.
