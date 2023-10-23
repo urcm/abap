@@ -86,5 +86,11 @@ start-of-selection.
   gs_fieldcat-hotspot = 'X'.
  append gs_fieldcat to gt_fieldcat.
 
- call method go_alv->set_table_for_first_display.
+
+  call method go_alv->set_table_for_first_display
+    exporting
+      i_structure_name              = 
+    changing
+      it_fieldcatalog               = 
+      it_outtab                     = .
 
