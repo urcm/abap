@@ -87,10 +87,10 @@ start-of-selection.
  append gs_fieldcat to gt_fieldcat.
 
 
+
   call method go_alv->set_table_for_first_display
     exporting
-      i_structure_name              = 
+      i_structure_name              = 'SPFLI' " Structure name of the internal output table
     changing
-      it_fieldcatalog               = 
-      it_outtab                     = .
-
+      it_fieldcatalog               = gt_fieldcat
+      it_outtab                     = gt_spfli. " Output table
