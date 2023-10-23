@@ -88,9 +88,14 @@ start-of-selection.
 
 
 
-  call method go_alv->set_table_for_first_display
+    call method go_alv->set_table_for_first_display
     exporting
       i_structure_name              = 'SPFLI' " Structure name of the internal output table
     changing
       it_fieldcatalog               = gt_fieldcat
-      it_outtab                     = gt_spfli. " Output table
+      it_outtab                     = gt_spfli " Output table
+    exceptions
+      invalid_parameter_combination = 1 " Parameter incorrect
+      program_error                 = 2 " Program error
+      too_many_lines                = 3 " Too many lines in input-ready grid.
+      others                        = 4.
