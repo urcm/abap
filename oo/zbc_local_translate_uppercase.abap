@@ -17,4 +17,7 @@ endclass.
 data rv_result type string.
 data gv_text type c length 30 value 'Hier ist ein text'.
 
+start-of-selection.
 
+  rv_result =  lcl_convert_text=>convert_text_to_upper_case( iv_text = gv_text ).
+  write rv_result.
