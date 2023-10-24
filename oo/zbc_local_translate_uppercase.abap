@@ -14,3 +14,7 @@ class lcl_convert_text implementation.
   endmethod.
 endclass.
 
+data rv_result type string.
+data gv_text type c length 30 value 'Hier ist ein text'.
+
+
