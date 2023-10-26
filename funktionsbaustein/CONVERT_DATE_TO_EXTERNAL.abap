@@ -1,3 +1,13 @@
+*"----------------------------------------------------------------------
+*"*"Lokale Schnittstelle:
+*"       IMPORTING
+*"             VALUE(DATE_INTERNAL) LIKE  SY-DATUM DEFAULT SY-DATUM
+*"       EXPORTING
+*"             VALUE(DATE_EXTERNAL)
+*"       EXCEPTIONS
+*"              DATE_INTERNAL_IS_INVALID
+*"----------------------------------------------------------------------
+
 data date_as_ch type char10.
 
 call function 'CONVERT_DATE_TO_EXTERNAL'
