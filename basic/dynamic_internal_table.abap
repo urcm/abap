@@ -11,5 +11,25 @@ assign gr_tab->* to <fs_tab>.
 select (pa_feld) from (pa_tab)
   into corresponding fields of table <fs_tab> where (pa_whe).
 
+try.
+    cl_salv_table=>factory(
+*    exporting
+*      list_display   = if_salv_c_bool_sap=>false " ALV wird im Listenmodus angezeigt
+*      r_container    =                           " Abstracter Container fuer GUI Controls
+*      container_name =
+      importing
+        r_salv_table   =  data(go_alv)                         " Basisklasse einfache ALV Tabellen
+      changing
+        t_table        = <fs_tab>
+    ).
+  catch cx_salv_msg into data(go_error). " ALV: Allg. Fehlerklasse  mit Meldung
+    message go_error->get_text( ) type 'I'.
+endtry.
+
+go_alv->display( ).
+
+
+
+
 
 
