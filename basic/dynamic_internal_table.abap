@@ -5,3 +5,6 @@ parameters pa_whe type string default `CITYFROM = 'FRANKFURT' and CITYTO = 'BERL
 data gr_tab type ref to data.
 field-symbols <fs_tab> type any table.
 
+create data gr_tab type table of (pa_tab).
+assign gr_tab->* to <fs_tab>.
+
