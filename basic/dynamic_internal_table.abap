@@ -8,3 +8,8 @@ field-symbols <fs_tab> type any table.
 create data gr_tab type table of (pa_tab).
 assign gr_tab->* to <fs_tab>.
 
+select (pa_feld) from (pa_tab)
+  into corresponding fields of table <fs_tab> where (pa_whe).
+
+
+
