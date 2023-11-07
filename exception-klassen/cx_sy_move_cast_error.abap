@@ -5,3 +5,8 @@ data: go_type  type ref to cl_abap_typedescr,
 
 go_type = cl_abap_typedescr=>describe_by_name( pa_class ).
 
+case go_type->kind.
+  when 'C'.
+
+  when others.
+endcase.
