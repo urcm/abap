@@ -8,3 +8,4 @@ In diesem Repository können Sie einige Informationen in Form von Beispielen zu 
 - 😚 DAY_IN_WEEK --> Der FaBu hilft dabei, den Wochentag für ein Datum zu ermitteln.
 - 😆 WEEK_GET_FIRST_DAY.abap --> Erhalten Sie den ersten Wochentag.
 - 😜 EPS2_GET_DIRECTORY_LISTING --> Ob Datei im Verzeichnis vorhanden ist?
+- 😗 CLOI_PUT_SIGN_IN_FRONT --> Nachstehendes Minuszeichen vor die Zahl stellen
