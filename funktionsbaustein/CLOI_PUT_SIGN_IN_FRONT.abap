@@ -20,3 +20,6 @@ call function 'CLOI_PUT_SIGN_IN_FRONT'
 
 write: / 'The result', lv_result.
 
+
+replace '-' with ' ' into lv_result.
+write: / 'The result without the minus sign', lv_result.
