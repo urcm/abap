@@ -9,7 +9,6 @@ class zcl_animal definition.
 endclass.
 
 class zcl_animal implementation.
-
   method constructor.
     if iv_type ne 'dog'.
       raise exception type cx_sy_create_object_error.
@@ -23,7 +22,18 @@ class zcl_animal implementation.
       when 'dog'.
         rv_voice = 'Haaw'.
     endcase.
-
   endmethod.
-
 endclass.
+
+data: lo_object type ref to zcl_animal.
+
+start-of-selection.
+
+  try.
+      create object lo_object
+        exporting
+          iv_type = 'cat'.
+
+    catch cx_sy_create_object_error into data(create_error).
+      write: 'Ein Fehler ist beim Erstellen des Objekts aufgetreten: ', create_error->get_text( ).
+  endtry.
