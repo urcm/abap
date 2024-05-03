@@ -63,3 +63,19 @@ class lcl_bird implementation.
   endmethod.
 endclass.
 
+start-of-selection.
+
+  data: lo_animal_factory type ref to lcl_animalfactory,
+        lo_animal         type ref to lcl_animal.
+
+  create object lo_animal_factory.
+
+  " Erstelle Tierobjekte mithilfe der Factory Methode
+  lo_animal = lo_animal_factory->create_animal( 'DOG' ).
+  call method lo_animal->make_sound.
+
+  lo_animal = lo_animal_factory->create_animal( 'CAT' ).
+  call method lo_animal->make_sound.
+
+  lo_animal = lo_animal_factory->create_animal( 'BIRD' ). 
+  call method lo_animal->make_sound.
