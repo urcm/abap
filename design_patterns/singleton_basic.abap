@@ -54,5 +54,20 @@ class lcl_singleton implementation.
   endmethod.
 endclass.
 
+start-of-selection.
+  data: lo_singleton  type ref to lcl_singleton,
+        lo_singleton_test type ref to lcl_singleton, " Es wurde für Testing erstellt.
+        lo_animal   type ref to lcl_animal.
 
+  lo_singleton = lcl_singleton=>get_instance( ).
+  lo_animal = lo_singleton->get_cat( ).
+  lo_animal->make_sound( ).
+
+
+*  lo_animal = lo_singleton->get_dog( ).
+*  lo_animal->make_sound( ).
+
+
+  lo_singleton_test = lcl_singleton=>get_instance( ). " Es wurde für Testing erstellt.
+  lo_animal = lo_singleton_test->get_dog( ).
   lo_animal->make_sound( ).
