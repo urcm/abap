@@ -26,3 +26,11 @@ class lcl_dog implementation.
    final method
 endclass.
 
+start of selection.
+   data: lo_animal type ref to zif_animal.
+
+   create object lo_animal type lcl_cat.
+   lo_animal->make_sound( ).
+
+   create object lo_animal type lcl_dog.
+   lo_animal->make_sound( ).
