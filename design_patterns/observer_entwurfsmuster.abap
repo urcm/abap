@@ -51,3 +51,29 @@ class lcl_cat implementation.
   endmethod.
 endclass.
 
+class lcl_dog definition inheriting from lcl_animal.
+  public section.
+    interfaces: zif_observer.
+endclass.
+
+class lcl_dog implementation.
+  method zif_observer~update_status.
+    write:/ 'Der Hund hat Hunger.'.
+    if status = 'Hunger'.
+      write:/ 'Der Hund hat Hunger.'.
+    else.
+      write:/ 'Der Hund ist satt.'.
+    endif.
+  endmethod.
+endclass.
+
+
+start-of-selection.
+  data(lo_cat) = new lcl_cat( ).
+  data(lo_dog) = new lcl_dog( ).
+
+  lo_cat->attach_observer( observer = lo_cat ).
+  lo_dog->attach_observer( observer = lo_dog ).
+
+  lo_cat->feed( ).
+  lo_dog->feed( ).
