@@ -49,3 +49,13 @@ class lcl_factory implementation.
   endmethod.
 endclass.
 
+start-of-selection.
+
+  data lo_dog type ref to lcl_animal.
+  data lo_cat type ref to lcl_animal.
+
+  lo_dog = lcl_factory=>get_instance( iv_type = 'DOG' ).
+  lo_dog->make_sound( ).
+
+  lo_cat = lcl_factory=>get_instance( iv_type = 'CAT' ).
+  lo_cat->make_sound( ).
